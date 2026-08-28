@@ -8,6 +8,7 @@
     :root {
       --primary-grad: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
       --btn-grad: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      --insta-grad: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
       --bg-color: #0f172a;
       --card-bg: #1e293b;
       --text-main: #f8fafc;
@@ -55,6 +56,26 @@
     }
     .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 650px; margin: 0 auto 30px; }
 
+    /* Botão de Rede Social no Header / Hero */
+    .btn-instagram {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--insta-grad);
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
+      transition: all 0.3s ease;
+    }
+    .btn-instagram:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(220, 39, 67, 0.5);
+    }
+
     .grid-pillars {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -70,6 +91,7 @@
     }
     .pillar-card:hover { transform: translateY(-5px); }
 
+    /* Bloco de Agendamento com Animações */
     .booking-container {
       max-width: 650px;
       margin: 50px auto;
@@ -78,11 +100,25 @@
       border-radius: 20px;
       border: 1px solid var(--border-color);
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      animation: fadeInContainer 0.8s ease-out;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .booking-container:hover {
+      transform: translateY(-4px);
+      border-color: #6366f1;
+      box-shadow: 0 15px 35px rgba(99, 102, 241, 0.2);
     }
     .booking-container h2 { text-align: center; margin-bottom: 25px; font-weight: 700; }
 
+    @keyframes fadeInContainer {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .form-group { margin-bottom: 20px; }
     label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; color: var(--text-muted); }
+    
+    /* Inputs Animados */
     input, select, textarea {
       width: 100%;
       padding: 14px;
@@ -91,6 +127,13 @@
       background: #0f172a;
       color: #fff;
       font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #a855f7;
+      box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+      background: #131c31;
     }
 
     .preference-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -102,14 +145,16 @@
       cursor: pointer;
       text-align: center;
       font-weight: 600;
-      transition: all 0.2s ease;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
+    .pref-btn:hover { transform: scale(1.02); }
     .pref-btn.selected {
       background: var(--btn-grad);
       border-color: transparent;
       box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
     }
 
+    /* Botão de Envio com Efeito de Pulso */
     button.submit-btn {
       width: 100%;
       background: var(--accent-green);
@@ -120,9 +165,14 @@
       border-radius: 10px;
       cursor: pointer;
       font-weight: 700;
-      transition: all 0.2s ease;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
     }
-    button.submit-btn:hover { background: #059669; transform: scale(1.01); }
+    button.submit-btn:hover {
+      background: #059669;
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+    }
 
     /* Estilos e Animações do Widget de IA */
     .ai-fab {
@@ -150,7 +200,7 @@
       bottom: 90px;
       right: 25px;
       width: 380px;
-      height: 520px;
+      height: 530px;
       background: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 20px;
@@ -191,7 +241,6 @@
     .chat-msg.bot { background: #334155; align-self: flex-start; border-bottom-left-radius: 2px; }
     .chat-msg.user { background: #6366f1; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
 
-    /* Animação de Digitação */
     .typing-indicator {
       display: flex;
       gap: 5px;
@@ -229,13 +278,19 @@
 
   <header>
     <div class="logo">Antonio Luiz De Freitas Junior</div>
-    <span style="font-size:0.9rem; color:var(--text-muted);">Psicanalista Clínico</span>
+    <a href="https://instagram.com/antoniojunior.psicanalista" target="_blank" class="btn-instagram">
+      📸 Instagram
+    </a>
   </header>
 
   <section class="hero">
     <h1>Um Espaço Único de Transformação</h1>
     <p>Acolhimento psicanalítico pautado na ética e no cuidado singular. Agende sua consulta e comece sua jornada de reflexão.</p>
     
+    <a href="https://instagram.com/antoniojunior.psicanalista" target="_blank" class="btn-instagram" style="font-size: 1rem; padding: 12px 25px;">
+      Acompanhe no Instagram @antoniojunior.psicanalista
+    </a>
+
     <div class="grid-pillars">
       <div class="pillar-card">
         <h3>🔒 Sigilo Ético</h3>
@@ -252,6 +307,7 @@
     </div>
   </section>
 
+  <!-- Bloco de Agendamento Animado -->
   <div class="booking-container">
     <h2>Agendar Atendimento</h2>
     
@@ -296,7 +352,7 @@
       <span style="cursor:pointer" onclick="toggleAI()">✕</span>
     </div>
     <div class="ai-chat" id="aiChat">
-      <div class="chat-msg bot">Olá! Sou a IA do consultório do psicanalista Antonio Luiz. Como posso ajudar você hoje? Pode me perguntar sobre valores, como funciona a psicanálise ou agendamentos!</div>
+      <div class="chat-msg bot">Olá! Sou o assistente virtual do psicanalista Antonio Luiz. Como posso te ajudar hoje? Pode me perguntar sobre valores, sessões, convênios, sigilo ou agendamentos!</div>
     </div>
     <div class="ai-input">
       <input type="text" id="aiQuery" placeholder="Escreva sua dúvida..." onkeypress="if(event.key==='Enter') sendAIMessage()">
@@ -329,11 +385,41 @@
       window.open(`https://wa.me/${PHONE}?text=${msg}`, '_blank');
     });
 
-    // Lógica e Inteligência Expandida do Chatbot
     function toggleAI() {
       const modal = document.getElementById('aiModal');
       modal.classList.toggle('active');
     }
+
+    const knowledgeBase = [
+      {
+        keywords: ["valor", "preço", "custo", "quanto é", "quanto custa", "investimento", "taxa", "pagamento", "pix", "cartao"],
+        response: "O valor do investimento por sessão é de **R$ 200,00**. O pagamento pode ser realizado via PIX ou transferência."
+      },
+      {
+        keywords: ["instagram", "rede social", "insta", "conteudo", "perfil"],
+        response: "Você pode acompanhar os conteúdos do psicanalista Antonio Luiz diretamente pelo Instagram: **@antoniojunior.psicanalista**!"
+      },
+      {
+        keywords: ["duracao", "tempo", "demora", "quantos minutos", "hora"],
+        response: "As sessões têm duração média de **45 a 50 minutos**, ocorrendo geralmente uma vez por semana."
+      },
+      {
+        keywords: ["convenio", "plano", "plano de saude", "unimed", "bradesco", "sulamerica", "reembolso"],
+        response: "Os atendimentos são particulares, mas fornecemos recibo para que você possa solicitar **reembolso junto ao seu plano de saúde**."
+      },
+      {
+        keywords: ["online", "presencial", "onde fica", "endereco", "local", "consultorio", "videochamada"],
+        response: "Oferecemos atendimento **Online** (via videochamada segura) e **Presencial**. Você escolhe a opção no formulário!"
+      },
+      {
+        keywords: ["sigilo", "segredo", "privacidade", "confidencial"],
+        response: "O sigilo é absoluto e protegido pelo código de ética profissional."
+      },
+      {
+        keywords: ["oi", "ola", "bom dia", "boa tarde", "boa noite"],
+        response: "Olá! Seja bem-vindo(a). Como posso ajudar você hoje?"
+      }
+    ];
 
     function sendAIMessage() {
       const input = document.getElementById('aiQuery');
@@ -342,12 +428,10 @@
 
       if (!text) return;
 
-      // Adiciona mensagem do usuário
       chat.innerHTML += `<div class="chat-msg user">${text}</div>`;
       input.value = '';
       chat.scrollTop = chat.scrollHeight;
 
-      // Exibe indicador de digitação ("digitando...")
       const typingId = 'typing-' + Date.now();
       chat.innerHTML += `
         <div class="typing-indicator" id="${typingId}">
@@ -358,30 +442,26 @@
       `;
       chat.scrollTop = chat.scrollHeight;
 
-      // Processamento da resposta
       setTimeout(() => {
         document.getElementById(typingId).remove();
 
-        let response = "A psicanálise é um processo de escuta qualificada que busca compreender os processos inconscientes por trás de angústias, conflitos e repetições de vida.";
         const q = text.toLowerCase();
+        let matchedResponse = null;
 
-        if (q.includes("valor") || q.includes("preço") || q.includes("quanto") || q.includes("custo")) {
-          response = "O valor da consulta psicanalítica é de **R$ 200,00**. O pagamento e os horários podem ser confirmados após o envio da solicitação pelo formulário.";
-        } else if (q.includes("duracao") || q.includes("tempo") || q.includes("minuto")) {
-          response = "Cada sessão possui duração aproximada de 45 a 50 minutos, permitindo um tempo adequado de associação livre e análise.";
-        } else if (q.includes("online") || q.includes("presencial") || q.includes("onde")) {
-          response = "O analista Antonio Luiz realiza atendimentos tanto **online** (via videochamada) quanto **presenciais**. Você pode selecionar sua preferência diretamente no formulário da página!";
-        } else if (q.includes("diferença") || q.includes("psicologia") || q.includes("psiquiatria")) {
-          response = "A psicanálise foca na investigação do inconsciente e na palavra do sujeito (fala livre), enquanto a psicologia clínica atua em abordagens comportamentais e a psiquiatria no manejo médico e medicamentoso.";
-        } else if (q.includes("agendar") || q.includes("marcar") || q.includes("contato")) {
-          response = "Para agendar, basta preencher o formulário acima na página e clicar no botão de confirmação. A proposta será enviada diretamente para o WhatsApp do psicanalista Antonio Luiz!";
-        } else if (q.includes("oi") || q.includes("olá") || q.includes("bom dia") || q.includes("boa tarde") || q.includes("boa noite")) {
-          response = "Olá! Como posso ajudar você a tirar dúvidas sobre o processo analítico ou agendamento de sessões?";
+        for (const item of knowledgeBase) {
+          if (item.keywords.some(keyword => q.includes(keyword))) {
+            matchedResponse = item.response;
+            break;
+          }
         }
 
-        chat.innerHTML += `<div class="chat-msg bot">${response}</div>`;
+        if (!matchedResponse) {
+          matchedResponse = "Entendo sua dúvida! Para detalhes mais específicos, recomendo enviar o formulário para conversarmos diretamente pelo WhatsApp.";
+        }
+
+        chat.innerHTML += `<div class="chat-msg bot">${matchedResponse}</div>`;
         chat.scrollTop = chat.scrollHeight;
-      }, 1000);
+      }, 900);
     }
   </script>
 </body>
