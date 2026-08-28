@@ -1,1 +1,16 @@
+body {
+  font-family: 'Georgia', serif;
+  background-color: #f7f5f0; /* Tom pastel acolhedor */
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
 
+header, main, footer {
+  max-width: 800px;
+  margin: 0 auto 30px auto;
+}
+
+h1 { color: #2c3e50; }
+h2 { color: #4a6572; border-bottom: 1px solid #ccc; padding-bottom: 8px; }
