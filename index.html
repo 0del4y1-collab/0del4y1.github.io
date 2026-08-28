@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Psicanálise | Atendimento Clínico</title>
+  <title>Antonio Luiz De Freitas Junior | Psicanalista</title>
   <style>
     :root {
       --bg-color: #fcfaf7;
@@ -29,8 +29,8 @@
       text-align: center;
       border-bottom: 1px solid var(--border-color);
     }
-    header h1 { font-weight: 300; font-size: 2.5rem; letter-spacing: -0.5px; color: var(--accent-color); }
-    header p { color: var(--text-muted); font-size: 1.1rem; margin-top: 8px; }
+    header h1 { font-weight: 400; font-size: 2.2rem; letter-spacing: -0.5px; color: var(--accent-color); }
+    header p { color: var(--text-muted); font-size: 1.1rem; margin-top: 8px; font-weight: 300; }
 
     .hero {
       max-width: 800px;
@@ -64,10 +64,10 @@
       border: 1px solid var(--border-color);
       box-shadow: 0 4px 20px rgba(0,0,0,0.03);
     }
-    .booking-container h3 { text-align: center; margin-bottom: 25px; color: var(--accent-color); }
+    .booking-container h3 { text-align: center; margin-bottom: 25px; color: var(--accent-color); font-weight: 400; font-size: 1.5rem; }
 
     .form-group { margin-bottom: 20px; }
-    label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
+    label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
     input, select, textarea {
       width: 100%;
       padding: 12px 14px;
@@ -75,6 +75,7 @@
       border-radius: 6px;
       background: #fafafa;
       font-size: 1rem;
+      font-family: inherit;
     }
 
     .preference-buttons {
@@ -90,6 +91,7 @@
       cursor: pointer;
       text-align: center;
       font-weight: 500;
+      transition: all 0.2s ease;
     }
     .pref-btn.selected {
       background-color: var(--accent-color);
@@ -108,30 +110,39 @@
       cursor: pointer;
       font-weight: 600;
       letter-spacing: 0.5px;
+      transition: background 0.2s ease;
     }
     button.submit-btn:hover { background: var(--accent-hover); }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Dr(a). Seu Nome</h1>
-    <p>Psicanalista | Membro da Sociedade Psicanalítica</p>
+    <h1>Antonio Luiz De Freitas Junior</h1>
+    <p>Psicanalista Clinico</p>
   </header>
 
   <section class="hero">
     <h2>Um espaço de escuta e análise</h2>
-    <p>A psicanálise oferece um lugar reservado e ético para investigar questões singulares do sujeito, permitindo ressignificar histórias e construir caminhos de autonomia.</p>
+    <p>A psicanálise oferece um lugar reservado e ético para investigar questões singulares do sujeito, permitindo ressignificar histórias e construir caminhos de reflexão e transformação.</p>
     
     <div class="grid-pillars">
       <div class="pillar-card"><b>Sigilo Ético</b><br><small>Espaço seguro e confidencial</small></div>
-      <div class="pillar-card"><b>Escuta Analítica</b><br><small>Sem julgamentos morais</small></div>
-      <div class="pillar-card"><b>Flexibilidade</b><br><small>Presencial ou Online</small></div>
+      <div class="pillar-card"><b>Escuta Analítica</b><br><small>Acolhimento sem julgamentos</small></div>
+      <div class="pillar-card"><b>Atendimento Flexível</b><br><small>Presencial ou Online</small></div>
     </div>
   </section>
 
   <div class="booking-container">
-    <h3>Agendar Primeira Consulta</h3>
+    <h3>Solicitar Agendamento</h3>
     
     <form id="psicoForm">
       <div class="form-group">
@@ -143,27 +154,32 @@
       </div>
 
       <div class="form-group">
-        <label for="nome">Seu Nome</label>
-        <input type="text" id="nome" placeholder="Digite seu nome completo" required>
+        <label for="nome">Seu Nome Completo</label>
+        <input type="text" id="nome" placeholder="Digite seu nome" required>
       </div>
 
       <div class="form-group">
         <label for="periodo">Melhor Período para Atendimento</label>
         <select id="periodo" required>
-          <option value="Manhã">Manhã (08h - 12h)</option>
-          <option value="Tarde">Tarde (12h - 18h)</option>
-          <option value="Noite">Noite (18h - 21h)</option>
+          <option value="Manhã (08h às 12h)">Manhã (08h - 12h)</option>
+          <option value="Tarde (12h às 18h)">Tarde (12h - 18h)</option>
+          <option value="Noite (18h às 21h)">Noite (18h - 21h)</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label for="obs">Mensagem Breve (Opcional)</label>
-        <textarea id="obs" rows="3" placeholder="Caso deseje, especifique um dia da semana preferencial..."></textarea>
+        <label for="obs">Mensagem / Observação (Opcional)</label>
+        <textarea id="obs" rows="3" placeholder="Caso deseje, informe um dia da semana preferencial..."></textarea>
       </div>
 
-      <button type="submit" class="submit-btn">Solicitar Agendamento via WhatsApp</button>
+      <button type="submit" class="submit-btn">Solicitar Horário via WhatsApp</button>
     </form>
   </div>
+
+  <footer>
+    <p>Antonio Luiz De Freitas Junior — Atendimento Psicanalítico</p>
+    <p>Contato: (24) 99319-1666</p>
+  </footer>
 
   <script>
     let selectedFormat = 'Online';
@@ -174,7 +190,7 @@
       selectedFormat = format;
     }
 
-    const SEU_NUMERO_WHATSAPP = "+55 24 99319-1666"; // Insira seu WhatsApp aqui
+    const SEU_NUMERO_WHATSAPP = "5524993191666";
 
     document.getElementById('psicoForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -182,7 +198,7 @@
       const periodo = document.getElementById('periodo').value;
       const obs = document.getElementById('obs').value;
 
-      const msg = `Olá! Gostaria de verificar horários para atendimento psicanalítico.%0A%0A` +
+      const msg = `Olá, Antonio! Gostaria de verificar a disponibilidade de horários para atendimento psicanalítico.%0A%0A` +
                   `*Nome:* ${encodeURIComponent(nome)}%0A` +
                   `*Formato:* ${encodeURIComponent(selectedFormat)}%0A` +
                   `*Período Preferencial:* ${encodeURIComponent(periodo)}%0A` +
