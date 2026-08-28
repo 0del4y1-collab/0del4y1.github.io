@@ -3,33 +3,126 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nome do Psicanalista | Psicanálise Clínico</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Atendimento Psicanalítico | Agendamento</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    header { text-align: center; margin-bottom: 30px; }
+    h1 { color: #2c3e50; font-size: 1.8rem; margin-bottom: 8px; }
+    p.subtitle { color: #666; font-size: 1rem; }
+    .info {
+      background: #f8f9fa;
+      border-left: 4px solid #4a90e2;
+      padding: 15px;
+      margin-bottom: 25px;
+      border-radius: 4px;
+    }
+    .form-group { margin-bottom: 18px; text-align: left; }
+    label { display: block; margin-bottom: 6px; font-weight: 600; color: #444; }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover { background-color: #219150; }
+  </style>
 </head>
 <body>
 
-  <header>
-    <h1>Dr. Nome do Profissional</h1>
-    <p>Psicanalista Clínico | CRP / Registro</p>
-  </header>
+  <div class="container">
+    <header>
+      <h1>Atendimento Psicanalítico</h1>
+      <p class="subtitle">Espaço de escuta, acolhimento e reflexão</p>
+    </header>
 
-  <main>
-    <section class="sobre">
-      <h2>Sobre a Abordagem</h2>
-      <p>Um espaço de escuta qualificada e acolhimento para o cuidado da saúde mental.</p>
-    </section>
+    <div class="info">
+      <p>Preencha os dados abaixo com o dia e horário de sua preferência para solicitar um agendamento. O pedido será enviado diretamente via WhatsApp.</p>
+    </div>
 
-    <section class="agendamento">
-      <h2>Agende sua Consulta</h2>
-      <!-- Widget do Calendly -->
-      <div class="calendly-inline-widget" data-url="HTTPS://CALENDLY.COM/SEU-USUARIO" style="min-width:320px;height:700px;"></div>
-      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-    </section>
-  </main>
+    <form id="appointmentForm">
+      <div class="form-group">
+        <label for="nome">Nome Completo</label>
+        <input type="text" id="nome" required placeholder="Digite seu nome">
+      </div>
 
-  <footer>
-    <p>Contato: contato@email.com | WhatsApp: (00) 00000-0000</p>
-  </footer>
+      <div class="form-group">
+        <label for="modalidade">Modalidade de Atendimento</label>
+        <select id="modalidade" required>
+          <option value="Online">Online</option>
+          <option value="Presencial">Presencial</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="data">Data Preferencial</label>
+        <input type="date" id="data" required>
+      </div>
+
+      <div class="form-group">
+        <label for="horario">Horário Preferencial</label>
+        <input type="time" id="horario" required>
+      </div>
+
+      <div class="form-group">
+        <label for="mensagem">Observações (opcional)</label>
+        <textarea id="mensagem" rows="3" placeholder="Alguma informação adicional?"></textarea>
+      </div>
+
+      <button type="submit">Enviar Solicitação via WhatsApp</button>
+    </form>
+  </div>
+
+  <script>
+    // ALTERE APENAS O NÚMERO ABAIXO (com DDD, sem espaço ou hífen)
+    const SEU_WHATSAPP = "5500999999999"; 
+
+    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const nome = document.getElementById('nome').value;
+      const modalidade = document.getElementById('modalidade').value;
+      const data = document.getElementById('data').value;
+      const horario = document.getElementById('horario').value;
+      const mensagem = document.getElementById('mensagem').value;
+
+      const texto = `Olá! Gostaria de agendar uma consulta.%0A%0A` +
+                    `*Nome:* ${encodeURIComponent(nome)}%0A` +
+                    `*Modalidade:* ${encodeURIComponent(modalidade)}%0A` +
+                    `*Data:* ${encodeURIComponent(data)}%0A` +
+                    `*Horário:* ${encodeURIComponent(horario)}%0A` +
+                    `*Obs:* ${encodeURIComponent(mensagem)}`;
+
+      window.open(`https://wa.me/${SEU_WHATSAPP}?text=${texto}`, '_blank');
+    });
+  </script>
 
 </body>
 </html>
