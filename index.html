@@ -8,7 +8,6 @@
     :root {
       --primary-grad: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
       --btn-grad: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-      --btn-hover: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
       --bg-color: #0f172a;
       --card-bg: #1e293b;
       --text-main: #f8fafc;
@@ -125,7 +124,7 @@
     }
     button.submit-btn:hover { background: #059669; transform: scale(1.01); }
 
-    /* Estilos do Widget de IA */
+    /* Estilos e Animações do Widget de IA */
     .ai-fab {
       position: fixed;
       bottom: 25px;
@@ -142,36 +141,88 @@
       align-items: center;
       gap: 10px;
       z-index: 1000;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
+    .ai-fab:hover { transform: scale(1.08); }
+
     .ai-modal {
-      display: none;
       position: fixed;
       bottom: 90px;
       right: 25px;
-      width: 360px;
-      height: 480px;
+      width: 380px;
+      height: 520px;
       background: var(--card-bg);
       border: 1px solid var(--border-color);
-      border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      border-radius: 20px;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.6);
       z-index: 1000;
+      display: flex;
       flex-direction: column;
       overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    .ai-modal.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: all;
+    }
+
     .ai-header {
       background: var(--primary-grad);
-      padding: 15px;
+      padding: 16px 20px;
       font-weight: bold;
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
-    .ai-chat { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
-    .chat-msg { padding: 10px 14px; border-radius: 10px; font-size: 0.9rem; max-width: 85%; }
-    .chat-msg.bot { background: #334155; align-self: flex-start; }
-    .chat-msg.user { background: #6366f1; align-self: flex-end; }
-    .ai-input { display: flex; border-top: 1px solid var(--border-color); }
-    .ai-input input { border: none; border-radius: 0; }
-    .ai-input button { background: var(--btn-grad); color: white; border: none; padding: 0 18px; cursor: pointer; }
+    .ai-chat { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+    
+    .chat-msg {
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 0.92rem;
+      max-width: 85%;
+      line-height: 1.4;
+      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    .chat-msg.bot { background: #334155; align-self: flex-start; border-bottom-left-radius: 2px; }
+    .chat-msg.user { background: #6366f1; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+
+    /* Animação de Digitação */
+    .typing-indicator {
+      display: flex;
+      gap: 5px;
+      padding: 12px 16px;
+      background: #334155;
+      border-radius: 14px;
+      align-self: flex-start;
+      border-bottom-left-radius: 2px;
+    }
+    .typing-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--text-muted);
+      border-radius: 50%;
+      animation: bounce 1.3s infinite ease-in-out;
+    }
+    .typing-dot:nth-child(2) { animation-delay: 0.15s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: translateY(10px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .ai-input { display: flex; border-top: 1px solid var(--border-color); background: #0f172a; }
+    .ai-input input { border: none; border-radius: 0; background: transparent; }
+    .ai-input button { background: var(--btn-grad); color: white; border: none; padding: 0 20px; cursor: pointer; font-weight: bold; }
   </style>
 </head>
 <body>
@@ -236,19 +287,19 @@
     </form>
   </div>
 
-  <!-- Assistente com Inteligência Artificial -->
-  <button class="ai-fab" onclick="toggleAI()">✨ Dúvidas? Fale com a IA</button>
+  <!-- Assistente Avançado de IA -->
+  <button class="ai-fab" onclick="toggleAI()">✨ Assistente Virtual</button>
 
   <div class="ai-modal" id="aiModal">
     <div class="ai-header">
-      <span>Assistente Psicanalítico</span>
+      <span>🤖 IA Psicanalítica</span>
       <span style="cursor:pointer" onclick="toggleAI()">✕</span>
     </div>
     <div class="ai-chat" id="aiChat">
-      <div class="chat-msg bot">Olá! Sou o assistente do psicanalista Antonio Luiz. Como posso ajudar com suas dúvidas sobre psicanálise ou sessões?</div>
+      <div class="chat-msg bot">Olá! Sou a IA do consultório do psicanalista Antonio Luiz. Como posso ajudar você hoje? Pode me perguntar sobre valores, como funciona a psicanálise ou agendamentos!</div>
     </div>
     <div class="ai-input">
-      <input type="text" id="aiQuery" placeholder="Pergunte algo sobre a psicanálise...">
+      <input type="text" id="aiQuery" placeholder="Escreva sua dúvida..." onkeypress="if(event.key==='Enter') sendAIMessage()">
       <button onclick="sendAIMessage()">Enviar</button>
     </div>
   </div>
@@ -278,10 +329,10 @@
       window.open(`https://wa.me/${PHONE}?text=${msg}`, '_blank');
     });
 
-    // Lógica do Assistente de IA
+    // Lógica e Inteligência Expandida do Chatbot
     function toggleAI() {
       const modal = document.getElementById('aiModal');
-      modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+      modal.classList.toggle('active');
     }
 
     function sendAIMessage() {
@@ -291,27 +342,46 @@
 
       if (!text) return;
 
-      // Mensagem do usuário
+      // Adiciona mensagem do usuário
       chat.innerHTML += `<div class="chat-msg user">${text}</div>`;
       input.value = '';
       chat.scrollTop = chat.scrollHeight;
 
-      // Resposta simulada de IA com base em palavras-chave
+      // Exibe indicador de digitação ("digitando...")
+      const typingId = 'typing-' + Date.now();
+      chat.innerHTML += `
+        <div class="typing-indicator" id="${typingId}">
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        </div>
+      `;
+      chat.scrollTop = chat.scrollHeight;
+
+      // Processamento da resposta
       setTimeout(() => {
-        let response = "A psicanálise é um processo de escuta focado no inconsciente para tratar angústias, ansiedades e padrões repetitivos.";
-        
+        document.getElementById(typingId).remove();
+
+        let response = "A psicanálise é um processo de escuta qualificada que busca compreender os processos inconscientes por trás de angústias, conflitos e repetições de vida.";
         const q = text.toLowerCase();
-        if (q.includes("valor") || q.includes("preço") || q.includes("quanto")) {
-          response = "Os valores das sessões e formas de pagamento podem ser alinhados diretamente com o Antonio pelo formulário de agendamento!";
-        } else if (q.includes("duracao") || q.includes("tempo")) {
-          response = "As sessões costumam ter duração média de 45 a 50 minutos, em um ambiente seguro e de escuta ativa.";
-        } else if (q.includes("online") || q.includes("presencial")) {
-          response = "Oferecemos ambas as modalidades! O atendimento online ocorre por videochamada com a mesma eficácia do presencial.";
+
+        if (q.includes("valor") || q.includes("preço") || q.includes("quanto") || q.includes("custo")) {
+          response = "O valor da consulta psicanalítica é de **R$ 200,00**. O pagamento e os horários podem ser confirmados após o envio da solicitação pelo formulário.";
+        } else if (q.includes("duracao") || q.includes("tempo") || q.includes("minuto")) {
+          response = "Cada sessão possui duração aproximada de 45 a 50 minutos, permitindo um tempo adequado de associação livre e análise.";
+        } else if (q.includes("online") || q.includes("presencial") || q.includes("onde")) {
+          response = "O analista Antonio Luiz realiza atendimentos tanto **online** (via videochamada) quanto **presenciais**. Você pode selecionar sua preferência diretamente no formulário da página!";
+        } else if (q.includes("diferença") || q.includes("psicologia") || q.includes("psiquiatria")) {
+          response = "A psicanálise foca na investigação do inconsciente e na palavra do sujeito (fala livre), enquanto a psicologia clínica atua em abordagens comportamentais e a psiquiatria no manejo médico e medicamentoso.";
+        } else if (q.includes("agendar") || q.includes("marcar") || q.includes("contato")) {
+          response = "Para agendar, basta preencher o formulário acima na página e clicar no botão de confirmação. A proposta será enviada diretamente para o WhatsApp do psicanalista Antonio Luiz!";
+        } else if (q.includes("oi") || q.includes("olá") || q.includes("bom dia") || q.includes("boa tarde") || q.includes("boa noite")) {
+          response = "Olá! Como posso ajudar você a tirar dúvidas sobre o processo analítico ou agendamento de sessões?";
         }
 
         chat.innerHTML += `<div class="chat-msg bot">${response}</div>`;
         chat.scrollTop = chat.scrollHeight;
-      }, 600);
+      }, 1000);
     }
   </script>
 </body>
