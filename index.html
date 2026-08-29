@@ -92,13 +92,6 @@
             text-decoration: none;
         }
 
-        /* Logo Estilizada */
-        .brand-logo-img {
-            height: 45px;
-            width: auto;
-            object-fit: contain;
-        }
-
         .brand-logo-text {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.6rem;
@@ -127,7 +120,22 @@
             color: var(--accent-gold);
         }
 
-        /* Botão Guia Instagram Nav */
+        .nav-page-btn {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3) !important;
+            color: var(--accent-gold) !important;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-page-btn:hover {
+            background: var(--accent-gold);
+            color: #0A0D14 !important;
+            box-shadow: 0 4px 15px var(--accent-gold-glow);
+        }
+
         .nav-instagram-btn {
             display: flex;
             align-items: center;
@@ -315,6 +323,42 @@
         .section-header p {
             color: var(--text-muted);
             font-size: 1.05rem;
+        }
+
+        /* Callout Card para a Segunda Página */
+        .tools-callout-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(18, 22, 33, 0.85) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 24px;
+            padding: 45px 35px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 60px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn-page-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            border-radius: 50px;
+            background: var(--gradient-gold);
+            color: #0A0D14;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            box-shadow: 0 8px 25px var(--accent-gold-glow);
+            transition: all 0.3s ease;
+        }
+
+        .btn-page-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
         }
 
         /* Pillars / Cards Grid */
@@ -726,17 +770,20 @@
 </head>
 <body>
 
-    <!-- TOP NAVIGATION COM LOGO E LINK INSTAGRAM -->
+    <!-- TOP NAVIGATION COM LOGO, LINK INSTAGRAM E BOTÃO DA SEGUNDA PÁGINA -->
     <nav>
         <a href="#" class="brand-container">
-            <!-- Caso tenha a imagem da logo, insira a URL/caminho no src abaixo -->
-            <!-- <img src="logo.png" alt="Antônio Júnior Psicanálise" class="brand-logo-img"> -->
             <span class="brand-logo-text">Antônio Júnior | Psicanálise</span>
         </a>
         <ul class="nav-links">
             <li><a href="#abordagem">Abordagem</a></li>
             <li><a href="#investimento">Investimento</a></li>
             <li><a href="#depoimentos">Depoimentos</a></li>
+            <li>
+                <a href="ferramentas.html" class="nav-page-btn">
+                    <i class="fas fa-sparkles"></i> Espaço Interativo
+                </a>
+            </li>
             <li>
                 <a href="https://www.instagram.com/antoniojunior.psicanalista" target="_blank" class="nav-instagram-btn">
                     <i class="fab fa-instagram"></i> @antoniojunior.psicanalista
@@ -775,6 +822,24 @@
 
             <a id="btn-wa-dynamic" href="https://wa.me/5524981483331?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20de%20Psican%C3%A1lise%20(Atendimento%20Online)." target="_blank" class="btn-whatsapp-primary">
                 <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i> Agendar via WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE DESTAQUE DA SEGUNDA PÁGINA (FERRAMENTAS) -->
+    <section class="section-container" style="padding-bottom: 20px;">
+        <div class="tools-callout-card">
+            <div class="badge" style="margin-bottom: 0;">
+                <i class="fas fa-moon"></i> Área Exclusiva de Reflexão
+            </div>
+            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #FFF;">
+                Conheça Nosso Espaço Interativo & Análise de Sonhos
+            </h2>
+            <p style="color: var(--text-secondary); max-width: 600px; font-size: 0.95rem;">
+                Acesse citadores psicanalíticos, diário de sonhos com pré-análise e o cartão de visita digital em um ambiente dedicado.
+            </p>
+            <a href="ferramentas.html" class="btn-page-secondary">
+                <i class="fas fa-arrow-right"></i> Ir para Ferramentas Interativas
             </a>
         </div>
     </section>
@@ -966,18 +1031,14 @@
             }
 
             if (msg.includes('primeira') || msg.includes('funciona') || msg.includes('sessão') || msg.includes('sessao')) {
-                return `A primeira sessão serve como entrevista preliminar, onde você compartilha o que traz como angústia ou busca de autoconhecimento, e alinhamos o formato do acompanhamento.`;
+                return `A primeira sessão serve como entrevista preliminar, onde você compartilha o que traz como angústia ou busca de autoconhecimento em um ambiente livre de julgamentos.`;
             }
 
-            if (msg.includes('online') || msg.includes('presencial') || msg.includes('modalidade') || msg.includes('onde')) {
-                return `Oferecemos atendimento em duas modalidades:<br>• <strong>Online:</strong> Via videochamada individual segura.<br>• <strong>Presencial:</strong> Em consultório estruturado para acolhimento analítico.`;
+            if (msg.includes('online') || msg.includes('presencial') || msg.includes('modalidade')) {
+                return `O atendimento pode ser realizado tanto na modalidade <strong>Online</strong> (via videochamada segura) quanto <strong>Presencial</strong>. Selecione sua preferência no topo do site e clique em Agendar!`;
             }
 
-            if (msg.includes('agendar') || msg.includes('horário') || msg.includes('horario') || msg.includes('whatsapp') || msg.includes('contato')) {
-                return `Você pode agendar diretamente pelo WhatsApp <strong>+55 24 98148-3331</strong>.<br><br><a href="https://wa.me/5524981483331?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" style="color: var(--accent-emerald); font-weight: bold;">[ Abrir conversa no WhatsApp ]</a>`;
-            }
-
-            return `Compreendo sua dúvida. Para agendamentos ou informações adicionais, entre em contato no WhatsApp <a href="https://wa.me/5524981483331" target="_blank" style="color: var(--accent-gold); font-weight: bold;">+55 24 98148-3331</a> ou visite nosso Instagram <a href="https://www.instagram.com/antoniojunior.psicanalista" target="_blank" style="color: var(--accent-gold); font-weight: bold;">@antoniojunior.psicanalista</a>.`;
+            return `Obrigado pelo contato! Para informações detalhadas ou para agendar uma consulta, entre em contato diretamente pelo WhatsApp:<br><br><a href="https://wa.me/5524981483331" target="_blank" style="color: var(--accent-emerald); font-weight: bold;">+55 24 98148-3331</a>`;
         }
     </script>
 </body>
