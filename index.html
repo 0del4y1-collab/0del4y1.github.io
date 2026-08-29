@@ -29,6 +29,18 @@
             --glass-border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* Tema Claro Opcional */
+        body.light-theme {
+            --bg-dark: #F8FAFC;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-card-hover: rgba(241, 245, 249, 0.95);
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-muted: #64748B;
+            --border-glow: rgba(0, 0, 0, 0.08);
+            --glass-border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -43,6 +55,7 @@
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         /* Ambient Glow Background Effects */
@@ -85,6 +98,10 @@
             border-bottom: var(--glass-border);
         }
 
+        body.light-theme nav {
+            background: rgba(248, 250, 252, 0.85);
+        }
+
         .brand-container {
             display: flex;
             align-items: center;
@@ -105,7 +122,7 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 20px;
             list-style: none;
         }
 
@@ -118,6 +135,25 @@
 
         .nav-links a:hover {
             color: var(--accent-gold);
+        }
+
+        .theme-toggle-btn {
+            background: transparent;
+            border: var(--glass-border);
+            color: var(--accent-gold);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: rotate(15deg);
         }
 
         .nav-page-btn {
@@ -144,7 +180,7 @@
             border-radius: 50px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(220, 39, 67, 0.4);
-            color: #FFFFFF !important;
+            color: var(--text-primary) !important;
             font-weight: 600;
             transition: all 0.3s ease !important;
         }
@@ -159,6 +195,7 @@
         .nav-instagram-btn:hover {
             background: var(--gradient-instagram);
             border-color: transparent;
+            color: #FFFFFF !important;
             box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4);
         }
 
@@ -202,7 +239,7 @@
             line-height: 1.15;
             max-width: 900px;
             margin-bottom: 20px;
-            color: #FFFFFF;
+            color: var(--text-primary);
         }
 
         .hero-title span {
@@ -220,24 +257,40 @@
             font-weight: 300;
         }
 
-        /* Selective Preference Control */
+        /* Preference Panel Box (Ampliado e Interativo) */
         .preference-box {
             background: var(--bg-card);
             border: var(--glass-border);
             backdrop-filter: blur(20px);
             padding: 35px;
             border-radius: 24px;
-            max-width: 520px;
+            max-width: 580px;
             width: 100%;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
             position: relative;
+            text-align: left;
         }
 
         .preference-box h3 {
-            font-size: 1.05rem;
-            font-weight: 500;
-            color: var(--text-secondary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pref-group {
             margin-bottom: 20px;
+        }
+
+        .pref-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-weight: 500;
         }
 
         .pref-toggle-container {
@@ -246,19 +299,18 @@
             padding: 6px;
             border-radius: 14px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            margin-bottom: 25px;
             gap: 8px;
         }
 
         .pref-toggle-btn {
             flex: 1;
-            padding: 12px 18px;
+            padding: 10px 14px;
             border: none;
             background: transparent;
             color: var(--text-secondary);
             border-radius: 10px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
@@ -272,6 +324,28 @@
             color: var(--accent-gold);
             border: 1px solid rgba(212, 175, 55, 0.3);
             box-shadow: 0 4px 20px var(--accent-gold-glow);
+        }
+
+        .pref-select {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            padding: 12px 16px;
+            border-radius: 12px;
+            outline: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .pref-select option {
+            background: #0A0D14;
+            color: #FFF;
+        }
+
+        .pref-select:focus {
+            border-color: var(--accent-gold);
         }
 
         .btn-whatsapp-primary {
@@ -291,6 +365,7 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            margin-top: 10px;
         }
 
         .btn-whatsapp-primary:hover {
@@ -316,7 +391,7 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 3rem;
             font-weight: 600;
-            color: #FFFFFF;
+            color: var(--text-primary);
             margin-bottom: 12px;
         }
 
@@ -327,14 +402,14 @@
 
         /* Callout Card para a Segunda Página */
         .tools-callout-card {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(18, 22, 33, 0.85) 100%);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, var(--bg-card) 100%);
             border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 24px;
             padding: 45px 35px;
             text-align: center;
             max-width: 900px;
             margin: 0 auto 60px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -403,7 +478,7 @@
             font-size: 1.8rem;
             font-weight: 600;
             margin-bottom: 15px;
-            color: #FFFFFF;
+            color: var(--text-primary);
         }
 
         .feature-card p {
@@ -414,13 +489,13 @@
 
         /* Premium Investment / Fee Box */
         .price-card {
-            background: linear-gradient(135deg, rgba(18, 22, 33, 0.95) 0%, rgba(26, 32, 48, 0.95) 100%);
+            background: var(--bg-card);
             border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 28px;
             padding: 60px 40px;
             text-align: center;
             position: relative;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
             max-width: 800px;
             margin: 0 auto;
         }
@@ -440,7 +515,7 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 4.5rem;
             font-weight: 700;
-            color: #FFFFFF;
+            color: var(--text-primary);
             margin: 15px 0 5px;
             letter-spacing: -1px;
         }
@@ -461,7 +536,32 @@
             margin-bottom: 35px;
         }
 
-        /* Testimonials */
+        /* Testimonials com Filtro */
+        .testimonial-filter {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: var(--glass-border);
+            color: var(--text-secondary);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--accent-gold);
+            border-color: var(--accent-gold);
+        }
+
         .testimonial-card {
             background: var(--bg-card);
             border: var(--glass-border);
@@ -471,6 +571,10 @@
             max-width: 800px;
             margin: 0 auto;
             position: relative;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .quote-mark {
@@ -486,7 +590,7 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.5rem;
             font-style: italic;
-            color: #E2E8F0;
+            color: var(--text-primary);
             margin-bottom: 25px;
             line-height: 1.5;
         }
@@ -630,7 +734,7 @@
 
         .msg.bot {
             background: rgba(255, 255, 255, 0.06);
-            color: var(--text-primary);
+            color: #F8FAFC;
             border-bottom-left-radius: 4px;
             align-self: flex-start;
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -721,6 +825,10 @@
             z-index: 1;
         }
 
+        body.light-theme footer {
+            background: rgba(241, 245, 249, 0.9);
+        }
+
         .footer-socials {
             display: flex;
             justify-content: center;
@@ -774,7 +882,7 @@
 </head>
 <body>
 
-    <!-- TOP NAVIGATION COM LOGO, LINK INSTAGRAM E BOTÃO DA SEGUNDA PÁGINA -->
+    <!-- TOP NAVIGATION COM LOGO, LINK INSTAGRAM, TEMA E BOTÃO DA SEGUNDA PÁGINA -->
     <nav>
         <a href="#" class="brand-container">
             <span class="brand-logo-text">Antônio Júnior | Psicanálise</span>
@@ -783,6 +891,11 @@
             <li><a href="#abordagem">Abordagem</a></li>
             <li><a href="#investimento">Investimento</a></li>
             <li><a href="#depoimentos">Depoimentos</a></li>
+            <li>
+                <button class="theme-toggle-btn" onclick="toggleTheme()" title="Alternar Tema">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+            </li>
             <li>
                 <a href="ferramentas.html" class="nav-page-btn">
                     <i class="fas fa-sparkles"></i> Espaço Interativo
@@ -796,7 +909,7 @@
         </ul>
     </nav>
 
-    <!-- HERO SECTION (TELA INICIAL DE PREFERÊNCIAS) -->
+    <!-- HERO SECTION (TELA INICIAL COM PAINEL COMPLETO DE PREFERÊNCIAS) -->
     <section class="hero-section">
         <div class="badge">
             <i class="fas fa-sparkles"></i> Atendimento Psicanalítico Especializado
@@ -811,20 +924,42 @@
             Um ambiente singular de acolhimento e profunda análise subjetiva para ressignificar angústias, padrões e desejos.
         </p>
 
-        <!-- PREFERENCE BOX -->
+        <!-- PREFERENCE BOX COMPLETA -->
         <div class="preference-box">
-            <h3>Selecione a modalidade de sua preferência:</h3>
+            <h3><i class="fas fa-sliders-h" style="color: var(--accent-gold);"></i> Configure seu Atendimento</h3>
             
-            <div class="pref-toggle-container">
-                <button class="pref-toggle-btn active" id="btn-online" onclick="setPreference('Online')">
-                    <i class="fas fa-laptop-house"></i> Online
-                </button>
-                <button class="pref-toggle-btn" id="btn-presencial" onclick="setPreference('Presencial')">
-                    <i class="fas fa-couch"></i> Presencial
-                </button>
+            <div class="pref-group">
+                <label>Modalidade de Atendimento:</label>
+                <div class="pref-toggle-container">
+                    <button class="pref-toggle-btn active" id="btn-online" onclick="setModalidade('Online')">
+                        <i class="fas fa-laptop-house"></i> Online
+                    </button>
+                    <button class="pref-toggle-btn" id="btn-presencial" onclick="setModalidade('Presencial')">
+                        <i class="fas fa-couch"></i> Presencial
+                    </button>
+                </div>
             </div>
 
-            <a id="btn-wa-dynamic" href="https://wa.me/5524981483331?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20de%20Psican%C3%A1lise%20(Atendimento%20Online)." target="_blank" class="btn-whatsapp-primary">
+            <div class="pref-group">
+                <label for="freqSelect">Frequência Desejada:</label>
+                <select id="freqSelect" class="pref-select" onchange="updatePreferences()">
+                    <option value="Semanal (Recomendado)">Semanal (Recomendado)</option>
+                    <option value="Quinzenal">Quinzenal</option>
+                    <option value="A alinhar na primeira sessão">A alinhar na primeira consulta</option>
+                </select>
+            </div>
+
+            <div class="pref-group">
+                <label for="goalSelect">Objetivo Principal:</label>
+                <select id="goalSelect" class="pref-select" onchange="updatePreferences()">
+                    <option value="Autoconhecimento e Subjetividade">Autoconhecimento e Crescimento</option>
+                    <option value="Tratamento de Ansiedade / Angústia">Ansiedade, Stress e Angústia</option>
+                    <option value="Conflitos Relacionais e Emocionais">Conflitos Relacionais</option>
+                    <option value="Superação de Traumas ou Luto">Traumas ou Luto</option>
+                </select>
+            </div>
+
+            <a id="btn-wa-dynamic" href="#" target="_blank" class="btn-whatsapp-primary">
                 <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i> Agendar via WhatsApp
             </a>
         </div>
@@ -836,7 +971,7 @@
             <div class="badge" style="margin-bottom: 0;">
                 <i class="fas fa-moon"></i> Área Exclusiva de Reflexão
             </div>
-            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #FFF;">
+            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--text-primary);">
                 Conheça Nosso Espaço Interativo & Análise de Sonhos
             </h2>
             <p style="color: var(--text-secondary); max-width: 600px; font-size: 0.95rem;">
@@ -897,19 +1032,25 @@
         </div>
     </section>
 
-    <!-- DEPOIMENTOS -->
+    <!-- DEPOIMENTOS COM PREFERÊNCIA DE FILTRO -->
     <section class="section-container" id="depoimentos">
         <div class="section-header">
             <h2>Experiências na Análise</h2>
             <p>Relatos sigilosos de quem vivencia o processo analítico</p>
         </div>
 
+        <div class="testimonial-filter">
+            <button class="filter-btn active" onclick="showTestimonial(0, this)">Ansiedade & Superação</button>
+            <button class="filter-btn" onclick="showTestimonial(1, this)">Autoconhecimento</button>
+            <button class="filter-btn" onclick="showTestimonial(2, this)">Atendimento Online</button>
+        </div>
+
         <div class="testimonial-card">
             <div class="quote-mark">“</div>
-            <p class="testimonial-text">
-                A psicanálise me permitiu enxergar padrões que eu repetia há anos sem perceber. Encontrei um espaço seguro de escuta acolhedora onde finalmente pude dar nome às minhas questões.
+            <p class="testimonial-text" id="testimonialText">
+                A psicanálise me permitiu enxergar padrões que eu repetia há anos sem perceber. Encontrei um espaço seguro de escuta acolhedora onde finalmente pude dar nome às minhas angústias.
             </p>
-            <div class="client-name">— PACIENTE EM ACOMPANHAMENTO</div>
+            <div class="client-name" id="testimonialAuthor">— PACIENTE EM ACOMPANHAMENTO</div>
         </div>
     </section>
 
@@ -966,10 +1107,15 @@
 
     <!-- INTERACTION LOGIC & AI ASSISTANT SCRIPT -->
     <script>
-        let currentPreference = 'Online';
+        // Estado de Preferências
+        let userPreferences = {
+            modalidade: 'Online',
+            frequencia: 'Semanal (Recomendado)',
+            objetivo: 'Autoconhecimento e Subjetividade'
+        };
 
-        function setPreference(type) {
-            currentPreference = type;
+        function setModalidade(type) {
+            userPreferences.modalidade = type;
             document.getElementById('btn-online').classList.remove('active');
             document.getElementById('btn-presencial').classList.remove('active');
 
@@ -978,19 +1124,63 @@
             } else {
                 document.getElementById('btn-presencial').classList.add('active');
             }
+            updatePreferences();
+        }
 
+        function updatePreferences() {
+            userPreferences.frequencia = document.getElementById('freqSelect').value;
+            userPreferences.objetivo = document.getElementById('goalSelect').value;
+            
+            // Atualiza link dinâmico do WhatsApp com base nas escolhas
             const phone = "5524981483331";
-            const text = encodeURIComponent(`Olá! Gostaria de agendar uma consulta de Psicanálise (Atendimento ${type}).`);
-            document.getElementById('btn-wa-dynamic').href = `https://wa.me/${phone}?text=${text}`;
+            const text = `Olá! Gostaria de agendar uma consulta de Psicanálise.\n\n*Minhas Preferências:*\n- Modalidade: ${userPreferences.modalidade}\n- Frequência: ${userPreferences.frequencia}\n- Foco Principal: ${userPreferences.objetivo}`;
+            const encodedText = encodeURIComponent(text);
+            
+            document.getElementById('btn-wa-dynamic').href = `https://wa.me/${phone}?text=${encodedText}`;
         }
 
+        // Alternador de Tema Claro / Escuro
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const icon = document.getElementById('themeIcon');
+            if(document.body.classList.contains('light-theme')) {
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
+        }
+
+        // Sistema de Depoimentos
+        const testimonials = [
+            {
+                text: "A psicanálise me permitiu enxergar padrões que eu repetia há anos sem perceber. Encontrei um espaço seguro de escuta acolhedora onde finalmente pude dar nome às minhas angústias.",
+                author: "— PACIENTE EM ACOMPANHAMENTO (FOCO EM ANSIEDADE)"
+            },
+            {
+                text: "Iniciar o processo analítico foi libertador. O Antônio conduz as sessões com uma sensibilidade e ética ímpares, me ajudando a ressignificar decisões de vida.",
+                author: "— PACIENTE EM ACOMPANHAMENTO (AUTOCONHECIMENTO)"
+            },
+            {
+                text: "A modalidade online superou todas as minhas expectativas. O acolhimento é profundo e a conveniência de fazer do meu espaço tornou o processo muito consistente.",
+                author: "— PACIENTE EM ATENDIMENTO ONLINE"
+            }
+        ];
+
+        function showTestimonial(index, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('testimonialText').innerText = testimonials[index].text;
+            document.getElementById('testimonialAuthor').innerText = testimonials[index].author;
+        }
+
+        // Lógica do Chatbot IA Flutuante
         function toggleChat() {
-            const modal = document.getElementById('chatModal');
-            modal.classList.toggle('active');
+            const chatModal = document.getElementById('chatModal');
+            chatModal.classList.toggle('active');
         }
 
-        function handleKeyPress(e) {
-            if (e.key === 'Enter') {
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
                 sendMessage();
             }
         }
@@ -1001,45 +1191,50 @@
         }
 
         function sendMessage() {
-            const input = document.getElementById('userInput');
-            const message = input.value.trim();
-            if (!message) return;
+            const inputField = document.getElementById('userInput');
+            const text = inputField.value.trim();
+            if (!text) return;
 
-            // Adiciona mensagem do usuário
-            appendMessage(message, 'user');
-            input.value = '';
+            const chatBody = document.getElementById('chatBody');
 
-            // Resposta simulada inteligente
+            // Mensagem do Usuário
+            const userMsg = document.createElement('div');
+            userMsg.className = 'msg user';
+            userMsg.innerText = text;
+            chatBody.appendChild(userMsg);
+
+            inputField.value = '';
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // Resposta Automática Inteligente
             setTimeout(() => {
-                const response = getBotResponse(message);
-                appendMessage(response, 'bot');
+                const botMsg = document.createElement('div');
+                botMsg.className = 'msg bot';
+                botMsg.innerHTML = getBotResponse(text);
+                chatBody.appendChild(botMsg);
+                chatBody.scrollTop = chatBody.scrollHeight;
             }, 600);
         }
 
-        function appendMessage(text, side) {
-            const chatBody = document.getElementById('chatBody');
-            const msgDiv = document.createElement('div');
-            msgDiv.className = `msg ${side}`;
-            msgDiv.innerHTML = text;
-            chatBody.appendChild(msgDiv);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-
-        function getBotResponse(input) {
-            const lower = input.toLowerCase();
-            
-            if (lower.includes('primeira sessão') || lower.includes('funciona') || lower.includes('primeira')) {
-                return 'A primeira sessão é um momento para nos conhecermos. Você terá espaço para relatar suas queixas e alinhar suas expectativas com o processo analítico.';
-            } else if (lower.includes('valor') || lower.includes('duracao') || lower.includes('duração') || lower.includes('quanto') || lower.includes('preço')) {
-                return 'O investimento por sessão é de <strong>R$ 200,00</strong>, com duração média de <strong>50 minutos</strong> cada atendimento.';
-            } else if (lower.includes('online') || lower.includes('presencial') || lower.includes('modalidade')) {
-                return 'Oferecemos atendimentos tanto na modalidade <strong>Online</strong> (via videochamada segura) quanto <strong>Presencial</strong> no consultório.';
-            } else if (lower.includes('instagram') || lower.includes('rede')) {
-                return 'Você pode acompanhar mais reflexões no Instagram oficial: <a href="https://www.instagram.com/antoniojunior.psicanalista" target="_blank" style="color: #D4AF37;">@antoniojunior.psicanalista</a>';
+        function getBotResponse(query) {
+            const q = query.toLowerCase();
+            if (q.includes('primeira') || q.includes('funciona') || q.includes('sessão')) {
+                return "A primeira sessão é um momento de escuta inicial e acolhimento. Nela, alinhamos suas demandas subjetivas, tiramos dúvidas e definimos a dinâmica do acompanhamento.";
+            } else if (q.includes('valor') || q.includes('preço') || q.includes('duração') || q.includes('quanto')) {
+                return "O valor por sessão é de R$ 200, com duração de 50 minutos. As sessões são individuais e personalizadas.";
+            } else if (q.includes('online') || q.includes('presencial') || q.includes('modalidade')) {
+                return `Atualmente realizamos atendimento tanto Online quanto Presencial. Notamos que você selecionou a modalidade **${userPreferences.modalidade}** nas suas preferências!`;
+            } else if (q.includes('instagram') || q.includes('rede') || q.includes('social')) {
+                return "Você pode acompanhar publicações e reflexões no Instagram oficial: <a href='https://www.instagram.com/antoniojunior.psicanalista' target='_blank' style='color: var(--accent-gold);'>@antoniojunior.psicanalista</a>.";
             } else {
-                return 'Obrigado pelo contato! Para agendar uma consulta ou tirar dúvidas específicas diretamente com o psicanalista Antônio Júnior, <a href="https://wa.me/5524981483331" target="_blank" style="color: #10B981; font-weight: bold;">clique aqui para abrir o WhatsApp</a>.';
+                return "Agradeço seu contato! Para informações detalhadas sobre horários na agenda, você pode clicar no botão de WhatsApp para falar diretamente conosco.";
             }
         }
+
+        // Inicializar link do WhatsApp com preferências padrão
+        window.onload = function() {
+            updatePreferences();
+        };
     </script>
 </body>
 </html>
