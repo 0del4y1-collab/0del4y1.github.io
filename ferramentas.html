@@ -1,1 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espaço Interativo & Sonhos | Antônio Júnior</title>
+    
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <style>
+        :root {
+            --bg-dark: #0A0D14;
+            --bg-card: rgba(18, 22, 33, 0.75);
+            --bg-card-hover: rgba(26, 32, 48, 0.85);
+            --accent-gold: #D4AF37;
+            --accent-gold-glow: rgba(212, 175, 55, 0.25);
+            --accent-emerald: #10B981;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+            --border-glow: rgba(255, 255, 255, 0.08);
+            --gradient-gold: linear-gradient(135deg, #F3E7C4 0%, #D4AF37 50%, #AA7C11 100%);
+            --gradient-emerald: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            --gradient-instagram: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Glow Background Effects */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -10%;
+            right: 20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.07) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Top Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 13, 20, 0.85);
+            backdrop-filter: blur(15px);
+            z-index: 100;
+            border-bottom: var(--glass-border);
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-back-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: var(--glass-border);
+            color: #FFF !important;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-back-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(-3px);
+        }
+
+        /* Hero Header */
+        .page-header {
+            padding: 140px 20px 60px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border-radius: 50px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .page-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #FFFFFF;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Layout Grid */
+        .tools-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 20px 100px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: var(--glass-border);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .tool-card.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .tool-card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .tool-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+        }
+
+        .tool-card-header h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: #FFF;
+        }
+
+        /* 1. Diário de Sonhos Form */
+        .dream-textarea {
+            width: 100%;
+            height: 140px;
+            background: rgba(10, 13, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 15px;
+            color: #FFF;
+            font-size: 0.95rem;
+            resize: none;
+            outline: none;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+
+        .dream-textarea:focus {
+            border-color: var(--accent-gold);
+        }
+
+        .btn-gold {
+            background: var(--gradient-gold);
+            color: #0A0D14;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px var(--accent-gold-glow);
+        }
+
+        .dream-result-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px dashed rgba(212, 175, 55, 0.3);
+            border-radius: 14px;
+            display: none;
+        }
+
+        .dream-result-box h4 {
+            color: var(--accent-gold);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .dream-result-box p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        /* 2. Citador Psicanalítico */
+        .quote-display {
+            background: rgba(10, 13, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .quote-content {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #E2E8F0;
+            margin-bottom: 12px;
+        }
+
+        .quote-author {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-align: right;
+        }
+
+        /* 3. Cartão Digital */
+        .vcard-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .vcard-info h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: #FFF;
+        }
+
+        .vcard-info p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-wa {
+            background: var(--gradient-emerald);
+            color: #FFF;
+            padding: 12px 22px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .btn-wa:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-insta {
+            background: var(--gradient-instagram);
+            color: #FFF;
+            padding: 12px 22px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s;
+        }
+
+        .btn-insta:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            border-top: var(--glass-border);
+            padding: 30px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            background: rgba(10, 13, 20, 0.9);
+        }
+
+        @media (max-width: 850px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            .page-title {
+                font-size: 2.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP NAV -->
+    <nav>
+        <a href="index.html" class="brand-container">
+            <span class="brand-logo-text">Antônio Júnior | Psicanálise</span>
+        </a>
+        <ul class="nav-links">
+            <li>
+                <a href="index.html" class="nav-back-btn">
+                    <i class="fas fa-arrow-left"></i> Voltar ao Início
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="page-header">
+        <div class="badge">
+            <i class="fas fa-sparkles"></i> Recursos Subjetivos & Reflexão
+        </div>
+        <h1 class="page-title">Espaço Interativo</h1>
+        <p class="page-subtitle">Ferramentas de apoio para exploração de conteúdos inconscientes, citações analíticas e agendamento direto.</p>
+    </header>
+
+    <!-- MAIN TOOLS GRID -->
+    <main class="tools-grid">
+
+        <!-- FERRAMENTA 1: REGISTRO E PRÉ-ANÁLISE DE SONHOS -->
+        <section class="tool-card">
+            <div class="tool-card-header">
+                <div class="tool-icon">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div>
+                    <h3>Diário & Análise de Sonhos</h3>
+                </div>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 15px;">
+                Escreva o relato do seu sonho recente para obter uma pré-orientação psicanalítica e, se desejar, levá-lo para ser trabalhado em sessão.
+            </p>
+
+            <textarea id="dreamInput" class="dream-textarea" placeholder="Descreva seu sonho com o máximo de detalhes que se lembrar (elementos, emoções, lugares)..."></textarea>
+            
+            <button class="btn-gold" onclick="analisarSonho()">
+                <i class="fas fa-wand-magic-sparkles"></i> Processar Relato
+            </button>
+
+            <div id="dreamResult" class="dream-result-box">
+                <h4><i class="fas fa-key"></i> Apontamento Analítico Preliminar:</h4>
+                <p id="dreamTextResult"></p>
+                <a id="btnSendDreamWA" href="#" target="_blank" class="btn-wa" style="font-size: 0.85rem; width: 100%; justify-content: center;">
+                    <i class="fab fa-whatsapp"></i> Enviar este relato para o Psicanalista
+                </a>
+            </div>
+        </section>
+
+        <!-- FERRAMENTA 2: CITADOR PSICANALÍTICO -->
+        <section class="tool-card">
+            <div class="tool-card-header">
+                <div class="tool-icon">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <div>
+                    <h3>Pensamento Psicanalítico</h3>
+                </div>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 15px;">
+                Gere citações e aforismos dos grandes autores da Psicanálise para provocar suas reflexões diárias.
+            </p>
+
+            <div class="quote-display">
+                <p class="quote-content" id="quoteText">"A fala é a primeira forma de ação no processo de análise."</p>
+                <p class="quote-author" id="quoteAuthor">— Sigmund Freud</p>
+            </div>
+
+            <button class="btn-gold" onclick="novaCitacao()">
+                <i class="fas fa-rotate"></i> Sortear Nova Citação
+            </button>
+        </section>
+
+        <!-- FERRAMENTA 3: CARTÃO DE VISITA DIGITAL -->
+        <section class="tool-card full-width">
+            <div class="vcard-container">
+                <div class="vcard-info">
+                    <h4>Antônio Júnior</h4>
+                    <p>Psicanalista Clínico | Atendimento Online e Presencial</p>
+                    <div style="color: var(--accent-gold); font-size: 0.9rem; display: flex; gap: 20px; flex-wrap: wrap;">
+                        <span><i class="fas fa-phone"></i> +55 24 98148-3331</span>
+                        <span><i class="fab fa-instagram"></i> @antoniojunior.psicanalista</span>
+                    </div>
+                </div>
+
+                <div class="contact-links">
+                    <a href="https://wa.me/5524981483331?text=Ol%C3%A1!%20Acessei%20seu%20site%20e%20gostaria%20de%20iniciar%20uma%20an%C3%A1lise." target="_blank" class="btn-wa">
+                        <i class="fab fa-whatsapp"></i> Iniciar Atendimento
+                    </a>
+                    <a href="https://www.instagram.com/antoniojunior.psicanalista" target="_blank" class="btn-insta">
+                        <i class="fab fa-instagram"></i> Ver Instagram
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; Antônio Júnior | Consultório de Psicanálise. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- INTERACTIVE LOGIC SCRIPT -->
+    <script>
+        // Citações Psicanalíticas
+        const citacoes = [
+            { text: "A inteligência é o único meio que possuímos para dominar nossos impulsos.", author: "Sigmund Freud" },
+            { text: "A efracção do inconsciente revela que a verdade do sujeito não está onde ele pensa.", author: "Jacques Lacan" },
+            { text: "Aquele que olha para fora sonha; aquele que olha para dentro desperta.", author: "Carl Jung" },
+            { text: "O inconsciente é estruturado como uma linguagem.", author: "Jacques Lacan" },
+            { text: "Sua visão se tornará clara somente quando você puder olhar para o seu próprio coração.", author: "Carl Jung" },
+            { text: "Qual a sua responsabilidade na desordem da qual você se queixa?", author: "Sigmund Freud" },
+            { text: "Amar é dar o que não se tem a alguém que não o quer.", author: "Jacques Lacan" }
+        ];
+
+        function novaCitacao() {
+            const randomIndex = Math.floor(Math.random() * citacoes.length);
+            const quote = citacoes[randomIndex];
+            document.getElementById('quoteText').innerText = `"${quote.text}"`;
+            document.getElementById('quoteAuthor').innerText = `— ${quote.author}`;
+        }
+
+        // Analisador de Sonhos
+        function analisarSonho() {
+            const input = document.getElementById('dreamInput').value.trim();
+            const resultBox = document.getElementById('dreamResult');
+            const resultText = document.getElementById('dreamTextResult');
+            const btnWA = document.getElementById('btnSendDreamWA');
+
+            if (!input) {
+                alert('Por favor, escreva o relato do seu sonho antes de processar.');
+                return;
+            }
+
+            resultText.innerHTML = `Na psicanálise, o sonho é a via régia para o inconsciente. Seu relato aponta para conteúdos associativos latentes que merecem ser escutados em sessão individual.`;
+            
+            const waMsg = encodeURIComponent(`Olá, Antônio! Registrei o seguinte relato de sonho no seu site para analisarmos em sessão:\n\n"${input}"`);
+            btnWA.href = `https://wa.me/5524981483331?text=${waMsg}`;
+
+            resultBox.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
