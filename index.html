@@ -1,250 +1,984 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Espaço de Psicanálise & Autoconhecimento</title>
-  <!-- Tipografia Premium -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-  
-  <style>
-    /* VARIABLES & THEMES */
-    :root {
-      --bg-primary: #f4f1ea;
-      --bg-card: rgba(255, 255, 255, 0.65);
-      --text-primary: #2c2a29;
-      --text-muted: #66605b;
-      --accent-gold: #b89756;
-      --border-glass: rgba(184, 151, 86, 0.25);
-      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultório de Psicanálise | Antônio Júnior</title>
+    
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    [data-theme="dark"] {
-      --bg-primary: #121619; /* Tom escuro e aconchegante */
-      --bg-card: rgba(23, 30, 34, 0.75);
-      --text-primary: #e6e4e0;
-      --text-muted: #a09d98;
-      --accent-gold: #d4af37;
-      --border-glass: rgba(212, 175, 55, 0.18);
-      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.35);
-    }
+    <style>
+        :root {
+            --bg-dark: #0A0D14;
+            --bg-card: rgba(18, 22, 33, 0.75);
+            --bg-card-hover: rgba(26, 32, 48, 0.85);
+            --accent-gold: #D4AF37;
+            --accent-gold-glow: rgba(212, 175, 55, 0.25);
+            --accent-emerald: #10B981;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+            --border-glow: rgba(255, 255, 255, 0.08);
+            --gradient-gold: linear-gradient(135deg, #F3E7C4 0%, #D4AF37 50%, #AA7C11 100%);
+            --gradient-emerald: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            --gradient-instagram: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.4s ease, color 0.4s ease, border 0.4s ease; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-    }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-    .container {
-      max-width: 800px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
+        /* Ambient Glow Background Effects */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -10%;
+            left: 20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.07) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
 
-    /* HEADER & THEME TOGGLE */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-    }
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -10%;
+            right: 10%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
 
-    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; color: var(--text-primary); }
-    h1 { font-size: 2.2rem; }
-    h2 { font-size: 1.6rem; margin-bottom: 12px; color: var(--accent-gold); }
+        /* Top Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 13, 20, 0.85);
+            backdrop-filter: blur(15px);
+            z-index: 100;
+            border-bottom: var(--glass-border);
+        }
 
-    .theme-btn {
-      background: transparent;
-      border: 1px solid var(--border-glass);
-      color: var(--text-primary);
-      padding: 8px 16px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.85rem;
-    }
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
 
-    /* UI/UX PREMIUM: GLASSMORPHISM CARD */
-    .card-premium {
-      background: var(--bg-card);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border-glass);
-      border-radius: 16px;
-      padding: 28px;
-      box-shadow: var(--shadow-soft);
-    }
+        /* Logo Estilizada */
+        .brand-logo-img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
 
-    /* CITADOR PSICANALÍTICO */
-    .quote-box {
-      text-align: center;
-      font-style: italic;
-    }
-    .quote-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      margin-bottom: 8px;
-    }
-    .quote-author {
-      font-size: 0.85rem;
-      color: var(--accent-gold);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+        .brand-logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    /* FORMULÁRIOS E BOTÕES */
-    textarea {
-      width: 100%;
-      height: 100px;
-      background: rgba(0,0,0,0.05);
-      border: 1px solid var(--border-glass);
-      border-radius: 8px;
-      padding: 12px;
-      color: var(--text-primary);
-      font-family: inherit;
-      resize: vertical;
-      margin-bottom: 12px;
-    }
-    [data-theme="dark"] textarea { background: rgba(255,255,255,0.03); }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            list-style: none;
+        }
 
-    .btn-action {
-      background: var(--accent-gold);
-      color: #121619;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-block;
-      text-align: center;
-      text-decoration: none;
-    }
-    .btn-action:hover { opacity: 0.9; }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
 
-    /* CARTÃO DE VISITA */
-    .vcard-actions {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-  </style>
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Botão Guia Instagram Nav */
+        .nav-instagram-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(220, 39, 67, 0.4);
+            color: #FFFFFF !important;
+            font-weight: 600;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-instagram-btn i {
+            background: var(--gradient-instagram);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.1rem;
+        }
+
+        .nav-instagram-btn:hover {
+            background: var(--gradient-instagram);
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4);
+        }
+
+        .nav-instagram-btn:hover i {
+            -webkit-text-fill-color: #FFFFFF;
+        }
+
+        /* Hero / Tela Inicial Premium */
+        .hero-section {
+            min-height: 100vh;
+            padding: 140px 20px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border-radius: 50px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 600;
+            line-height: 1.15;
+            max-width: 900px;
+            margin-bottom: 20px;
+            color: #FFFFFF;
+        }
+
+        .hero-title span {
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* Selective Preference Control */
+        .preference-box {
+            background: var(--bg-card);
+            border: var(--glass-border);
+            backdrop-filter: blur(20px);
+            padding: 35px;
+            border-radius: 24px;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .preference-box h3 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .pref-toggle-container {
+            display: flex;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 6px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 25px;
+            gap: 8px;
+        }
+
+        .pref-toggle-btn {
+            flex: 1;
+            padding: 12px 18px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .pref-toggle-btn.active {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--accent-gold);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 4px 20px var(--accent-gold-glow);
+        }
+
+        .btn-whatsapp-primary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 18px;
+            border-radius: 14px;
+            background: var(--gradient-emerald);
+            color: #FFFFFF;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-whatsapp-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.45);
+        }
+
+        /* Section Layouts */
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Pillars / Cards Grid */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: var(--glass-border);
+            padding: 40px 30px;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-6px);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 25px;
+        }
+
+        .feature-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #FFFFFF;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Premium Investment / Fee Box */
+        .price-card {
+            background: linear-gradient(135deg, rgba(18, 22, 33, 0.95) 0%, rgba(26, 32, 48, 0.95) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 28px;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 2px;
+            background: var(--gradient-gold);
+        }
+
+        .price-val {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin: 15px 0 5px;
+            letter-spacing: -1px;
+        }
+
+        .price-val sub {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 400;
+        }
+
+        .price-details {
+            color: var(--accent-gold);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 35px;
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: var(--bg-card);
+            border: var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .quote-mark {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            color: rgba(212, 175, 55, 0.2);
+            position: absolute;
+            top: 10px;
+            left: 30px;
+        }
+
+        .testimonial-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #E2E8F0;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .client-name {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- INTERACTIVE AI CHATBOT --- */
+        .ai-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gradient-gold);
+            color: #0A0D14;
+            padding: 14px 24px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+            cursor: pointer;
+            z-index: 99;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .ai-fab:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6);
+        }
+
+        .chat-modal {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 380px;
+            height: 520px;
+            background: #0E121B;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 24px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 100;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .chat-modal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+
+        .chat-header {
+            background: rgba(18, 22, 33, 0.95);
+            padding: 18px 20px;
+            border-bottom: var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-bot-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--gradient-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 1.1rem;
+        }
+
+        .chat-title h4 {
+            font-size: 0.95rem;
+            color: #FFF;
+        }
+
+        .status {
+            font-size: 0.75rem;
+            color: var(--accent-emerald);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-emerald);
+            border-radius: 50%;
+        }
+
+        .close-chat {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-chat:hover {
+            color: #FFF;
+        }
+
+        .chat-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            background: rgba(10, 13, 20, 0.6);
+        }
+
+        .msg {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .msg.bot {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-primary);
+            border-bottom-left-radius: 4px;
+            align-self: flex-start;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .msg.user {
+            background: var(--gradient-gold);
+            color: #0A0D14;
+            font-weight: 500;
+            border-bottom-right-radius: 4px;
+            align-self: flex-end;
+        }
+
+        .quick-prompts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .prompt-pill {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            color: var(--accent-gold);
+            font-size: 0.75rem;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .prompt-pill:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: var(--accent-gold);
+        }
+
+        .chat-footer {
+            padding: 14px;
+            background: rgba(18, 22, 33, 0.95);
+            border-top: var(--glass-border);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 10px 14px;
+            color: #FFF;
+            font-size: 0.88rem;
+            outline: none;
+        }
+
+        .chat-input:focus {
+            border-color: var(--accent-gold);
+        }
+
+        .send-btn {
+            background: var(--gradient-gold);
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            color: #000;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer Social Links */
+        footer {
+            border-top: var(--glass-border);
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            background: rgba(10, 13, 20, 0.9);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .footer-socials a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .footer-socials a:hover {
+            color: #FFFFFF;
+            background: var(--gradient-instagram);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            nav {
+                padding: 15px 20px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .chat-modal {
+                width: calc(100vw - 40px);
+                right: 20px;
+                bottom: 90px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="container">
-    
-    <!-- TOP BAR -->
-    <header>
-      <h1>Espaço Psicanálise</h1>
-      <button class="theme-btn" onclick="toggleTheme()">🌓 Alternar Modo</button>
-    </header>
+    <!-- TOP NAVIGATION COM LOGO E LINK INSTAGRAM -->
+    <nav>
+        <a href="#" class="brand-container">
+            <!-- Caso tenha a imagem da logo, insira a URL/caminho no src abaixo -->
+            <!-- <img src="logo.png" alt="Antônio Júnior Psicanálise" class="brand-logo-img"> -->
+            <span class="brand-logo-text">Antônio Júnior | Psicanálise</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#abordagem">Abordagem</a></li>
+            <li><a href="#investimento">Investimento</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+            <li>
+                <a href="https://www.instagram.com/antoniojunior.psicanalista" target="_blank" class="nav-instagram-btn">
+                    <i class="fab fa-instagram"></i> @antoniojunior.psicanalista
+                </a>
+            </li>
+        </ul>
+    </nav>
 
-    <!-- CITADOR PSICANALÍTICO -->
-    <section class="card-premium quote-box">
-      <div class="quote-text" id="quoteText">"A voz do inconsciente é sutil, mas não descansa até ser ouvida."</div>
-      <div class="quote-author" id="quoteAuthor">— Sigmund Freud</div>
-      <br>
-      <button class="theme-btn" onclick="novoCitador()">Nova Reflexão</button>
+    <!-- HERO SECTION (TELA INICIAL DE PREFERÊNCIAS) -->
+    <section class="hero-section">
+        <div class="badge">
+            <i class="fas fa-sparkles"></i> Atendimento Psicanalítico Especializado
+        </div>
+        
+        <h1 class="hero-title">
+            O Inconsciente em Escuta.<br>
+            A Transformação em <span>Palavras.</span>
+        </h1>
+        
+        <p class="hero-subtitle">
+            Um ambiente singular de acolhimento e profunda análise subjetiva para ressignificar angústias, padrões e desejos.
+        </p>
+
+        <!-- PREFERENCE BOX -->
+        <div class="preference-box">
+            <h3>Selecione a modalidade de sua preferência:</h3>
+            
+            <div class="pref-toggle-container">
+                <button class="pref-toggle-btn active" id="btn-online" onclick="setPreference('Online')">
+                    <i class="fas fa-laptop-house"></i> Online
+                </button>
+                <button class="pref-toggle-btn" id="btn-presencial" onclick="setPreference('Presencial')">
+                    <i class="fas fa-couch"></i> Presencial
+                </button>
+            </div>
+
+            <a id="btn-wa-dynamic" href="https://wa.me/5524981483331?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20de%20Psican%C3%A1lise%20(Atendimento%20Online)." target="_blank" class="btn-whatsapp-primary">
+                <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i> Agendar via WhatsApp
+            </a>
+        </div>
     </section>
 
-    <!-- ANÁLISE DE SONHOS COM IA -->
-    <section class="card-premium">
-      <h2>Análise de Sonhos (Dream Journal)</h2>
-      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px;">
-        Escreva os detalhes, símbolos ou sentimentos do seu sonho para receber uma perspectiva analítica.
-      </p>
-      <textarea id="sonhoInput" placeholder="Descreva seu sonho aqui..."></textarea>
-      <button class="btn-action" onclick="analisarSonho()">Analisar Simbolismo</button>
-      <div id="resultadoSonho" style="margin-top: 16px; font-size: 0.95rem; display: none;"></div>
+    <!-- ABORDAGEM CLÍNICA -->
+    <section class="section-container" id="abordagem">
+        <div class="section-header">
+            <h2>Abordagem Clínica</h2>
+            <p>Pilares fundamentais do processo psicanalítico de alta precisão</p>
+        </div>
+
+        <div class="grid-3">
+            <div class="feature-card">
+                <div class="icon-box">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>Associação Livre</h3>
+                <p>Investigação continuada dos conteúdos do inconsciente por meio da fala espontânea, permitindo elaborar nós sintomáticos e repetições.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-box">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+                <h3>Espaço de Sigilo Absorvente</h3>
+                <p>Acolhimento rigorosamente ético, livre de julgamentos morais, focado na singularidade da sua história de vida e subjetividade.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-box">
+                    <i class="fas fa-compass"></i>
+                </div>
+                <h3>Ressignificação Emocional</h3>
+                <p>Trabalho profundo sobre fobia, angústia, ansiedade e travamentos existenciais para que o sujeito assuma a própria sustentação do desejo.</p>
+            </div>
+        </div>
     </section>
 
-    <!-- CARTÃO DE VISITA DIGITAL -->
-    <section class="card-premium">
-      <h2>Cartão de Visita Digital</h2>
-      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">
-        Salve os dados de contato diretamente na agenda do seu celular.
-      </p>
-      <div class="vcard-actions">
-        <button class="btn-action" onclick="baixarVCard()">🎴 Salvar Contato (vCard)</button>
-      </div>
+    <!-- INVESTIMENTO E SESSÃO -->
+    <section class="section-container" id="investimento">
+        <div class="price-card">
+            <div class="badge" style="margin-bottom: 10px;">Transparência e Ética</div>
+            <div class="price-val">R$ 200<sub> / sessão</sub></div>
+            <div class="price-details">Sessões Individuais de 50 minutos</div>
+            <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 30px; font-size: 0.95rem;">
+                Disponibilidade de horários flexíveis para atendimento individualizado com acompanhamento contínuo.
+            </p>
+            <a href="https://wa.me/5524981483331?text=Ol%C3%A1!%20Gostaria%20de%20verificar%20hor%C3%A1rios%20dispon%C3%ADveis%20para%20psican%C3%A1lise." target="_blank" class="btn-whatsapp-primary" style="max-width: 320px; margin: 0 auto;">
+                Consultar Agenda
+            </a>
+        </div>
     </section>
 
-  </div>
+    <!-- DEPOIMENTOS -->
+    <section class="section-container" id="depoimentos">
+        <div class="section-header">
+            <h2>Experiências na Análise</h2>
+            <p>Relatos sigilosos de quem vivencia o processo analítico</p>
+        </div>
 
-  <script>
-    // 1. ALTERNADOR DE MODO ESCURO / ACONCHEGANTE
-    function toggleTheme() {
-      const html = document.documentElement;
-      const currentTheme = html.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', newTheme);
-    }
+        <div class="testimonial-card">
+            <div class="quote-mark">“</div>
+            <p class="testimonial-text">
+                A psicanálise me permitiu enxergar padrões que eu repetia há anos sem perceber. Encontrei um espaço seguro de escuta acolhedora onde finalmente pude dar nome às minhas questões.
+            </p>
+            <div class="client-name">— PACIENTE EM ACOMPANHAMENTO</div>
+        </div>
+    </section>
 
-    // 2. CITADOR PSICANALÍTICO
-    const citacoes = [
-      { texto: "A voz do inconsciente é sutil, mas não descansa até ser ouvida.", autor: "Sigmund Freud" },
-      { texto: "Aquele que olha para fora sonha; aquele que olha para dentro desperta.", autor: "Carl Jung" },
-      { texto: "O inconsciente é estruturado como uma linguagem.", autor: "Jacques Lacan" },
-      { texto: "Olhar para trás é ver o que já fomos; olhar para dentro é descobrir quem somos.", autor: "Melanie Klein" },
-      { texto: "A emoção não expressa nunca morre. Ela é enterrada viva e retorna mais tarde de formas mais feias.", autor: "Sigmund Freud" }
-    ];
+    <!-- ASSISTENTE IA FLUTUANTE -->
+    <button class="ai-fab" onclick="toggleChat()">
+        <i class="fas fa-sparkles"></i> Dúvidas? Fale com a IA
+    </button>
 
-    function novoCitador() {
-      const idx = Math.floor(Math.random() * citacoes.length);
-      document.getElementById('quoteText').innerText = `"${citacoes[idx].texto}"`;
-      document.getElementById('quoteAuthor').innerText = `— ${citacoes[idx].autor}`;
-    }
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-header">
+            <div class="chat-bot-info">
+                <div class="avatar"><i class="fas fa-robot"></i></div>
+                <div class="chat-title">
+                    <h4>Assistente Psicanalítico</h4>
+                    <div class="status"><span class="status-dot"></span> Online</div>
+                </div>
+            </div>
+            <button class="close-chat" onclick="toggleChat()"><i class="fas fa-times"></i></button>
+        </div>
 
-    // 3. ANÁLISE DE SONHOS (Simulação de integração IA)
-    function analisarSonho() {
-      const texto = document.getElementById('sonhoInput').value;
-      const resDiv = document.getElementById('resultadoSonho');
-      
-      if (!texto.trim()) {
-        alert('Por favor, descreva o seu sonho antes de enviar.');
-        return;
-      }
+        <div class="chat-body" id="chatBody">
+            <div class="msg bot">
+                Olá! Sou o assistente virtual do psicanalista Antônio Júnior. Como posso te ajudar hoje?
+                <div class="quick-prompts">
+                    <span class="prompt-pill" onclick="sendQuickPrompt('Como funciona a primeira sessão?')">Primeira sessão?</span>
+                    <span class="prompt-pill" onclick="sendQuickPrompt('Qual o valor e duração?')">Valor e Duração?</span>
+                    <span class="prompt-pill" onclick="sendQuickPrompt('Atende online ou presencial?')">Modalidades?</span>
+                    <span class="prompt-pill" onclick="sendQuickPrompt('Qual o seu Instagram?')">Instagram?</span>
+                </div>
+            </div>
+        </div>
 
-      resDiv.style.display = 'block';
-      resDiv.innerHTML = '<em>Analisando os elementos simbólicos do seu relato...</em>';
+        <div class="chat-footer">
+            <input type="text" id="userInput" class="chat-input" placeholder="Digite sua pergunta aqui..." onkeypress="handleKeyPress(event)">
+            <button class="send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
 
-      setTimeout(() => {
-        resDiv.innerHTML = `
-          <strong>Reflexão Analítica:</strong><br>
-          Os elementos relatados sugerem conteúdos do inconsciente buscando elaboração. Em abordagens psicanalíticas, figuras e cenários em sonhos costumam representar desejos reprimidos ou conflitos internos. Recomendamos registrar essas sensações em seu diário e levá-las para discussão em consulta.
-        `;
-      }, 1500);
-    }
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; Antônio Júnior | Consultório de Psicanálise. Todos os direitos reservados.</p>
+        
+        <div class="footer-socials">
+            <a href="https://www.instagram.com/antoniojunior.psicanalista" target="_blank" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/5524981483331" target="_blank" title="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
 
-    // 4. GERADOR DE CARTÃO DE VISITA (vCard)
-    function baixarVCard() {
-      const vcardData = 
-`BEGIN:VCARD
-VERSION:3.0
-FN:Consultório de Psicanálise
-TEL;TYPE=CELL:+5500000000000
-EMAIL:contato@psicanalise.com
-NOTE:Atendimento Online e Presencial
-END:VCARD`;
+        <p style="margin-top: 8px;">Contato: <a href="https://wa.me/5524981483331" target="_blank">+55 24 98148-3331</a> | Instagram: <a href="https://www.instagram.com/antoniojunior.psicanalista" target="_blank">@antoniojunior.psicanalista</a></p>
+    </footer>
 
-      const blob = new Blob([vcardData], { type: 'text/vcard' });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'Contato_Psicanalise.vcf';
-      a.click();
-      window.URL.revokeObjectURL(url);
-    }
-  </script>
+    <!-- INTERACTION LOGIC & AI ASSISTANT SCRIPT -->
+    <script>
+        let currentPreference = 'Online';
+
+        function setPreference(type) {
+            currentPreference = type;
+            document.getElementById('btn-online').classList.remove('active');
+            document.getElementById('btn-presencial').classList.remove('active');
+
+            if (type === 'Online') {
+                document.getElementById('btn-online').classList.add('active');
+            } else {
+                document.getElementById('btn-presencial').classList.add('active');
+            }
+
+            const phone = "5524981483331";
+            const text = encodeURIComponent(`Olá! Gostaria de agendar uma consulta de Psicanálise (Atendimento ${type}).`);
+            document.getElementById('btn-wa-dynamic').href = `https://wa.me/${phone}?text=${text}`;
+        }
+
+        function toggleChat() {
+            const modal = document.getElementById('chatModal');
+            modal.classList.toggle('active');
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendQuickPrompt(promptText) {
+            document.getElementById('userInput').value = promptText;
+            sendMessage();
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const messageText = input.value.trim();
+            if (!messageText) return;
+
+            appendMessage(messageText, 'user');
+            input.value = '';
+
+            setTimeout(() => {
+                const botReply = generateAIReply(messageText);
+                appendMessage(botReply, 'bot');
+            }, 600);
+        }
+
+        function appendMessage(text, sender) {
+            const chatBody = document.getElementById('chatBody');
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('msg', sender);
+            msgDiv.innerHTML = text;
+            chatBody.appendChild(msgDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function generateAIReply(userMsg) {
+            const msg = userMsg.toLowerCase();
+
+            if (msg.includes('instagram') || msg.includes('rede') || msg.includes('social')) {
+                return `Você pode acompanhar publicações e reflexões do psicanalista Antônio Júnior diretamente no Instagram:<br><br><a href="https://www.instagram.com/antoniojunior.psicanalista" target="_blank" style="color: var(--accent-gold); font-weight: bold;">@antoniojunior.psicanalista</a>`;
+            }
+
+            if (msg.includes('valor') || msg.includes('preço') || msg.includes('custo') || msg.includes('quanto')) {
+                return `O investimento por sessão individual é de <strong>R$ 200,00</strong> com duração de 50 minutos.<br><br><a href="https://wa.me/5524981483331?text=Gostaria%20de%20agendar%20pelo%20valor%20de%20R$%20200" target="_blank" style="color: var(--accent-gold); font-weight: 600;">Clique aqui para agendar seu horário.</a>`;
+            }
+
+            if (msg.includes('primeira') || msg.includes('funciona') || msg.includes('sessão') || msg.includes('sessao')) {
+                return `A primeira sessão serve como entrevista preliminar, onde você compartilha o que traz como angústia ou busca de autoconhecimento, e alinhamos o formato do acompanhamento.`;
+            }
+
+            if (msg.includes('online') || msg.includes('presencial') || msg.includes('modalidade') || msg.includes('onde')) {
+                return `Oferecemos atendimento em duas modalidades:<br>• <strong>Online:</strong> Via videochamada individual segura.<br>• <strong>Presencial:</strong> Em consultório estruturado para acolhimento analítico.`;
+            }
+
+            if (msg.includes('agendar') || msg.includes('horário') || msg.includes('horario') || msg.includes('whatsapp') || msg.includes('contato')) {
+                return `Você pode agendar diretamente pelo WhatsApp <strong>+55 24 98148-3331</strong>.<br><br><a href="https://wa.me/5524981483331?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" style="color: var(--accent-emerald); font-weight: bold;">[ Abrir conversa no WhatsApp ]</a>`;
+            }
+
+            return `Compreendo sua dúvida. Para agendamentos ou informações adicionais, entre em contato no WhatsApp <a href="https://wa.me/5524981483331" target="_blank" style="color: var(--accent-gold); font-weight: bold;">+55 24 98148-3331</a> ou visite nosso Instagram <a href="https://www.instagram.com/antoniojunior.psicanalista" target="_blank" style="color: var(--accent-gold); font-weight: bold;">@antoniojunior.psicanalista</a>.`;
+        }
+    </script>
 </body>
 </html>
