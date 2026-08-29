@@ -3,342 +3,914 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultório de Psicanálise</title>
-    <!-- Google Fonts & Font Awesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Consultório de Psicanálise | Escuta & Autoconhecimento</title>
     
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
         :root {
-            --primary-color: #6C5CE7;
-            --secondary-color: #a29bfe;
-            --accent-color: #00cec9;
-            --dark-color: #2d3436;
-            --light-color: #f7f9fc;
-            --white: #ffffff;
-            --gradient: linear-gradient(135deg, #6C5CE7 0%, #00cec9 100%);
+            --bg-dark: #0A0D14;
+            --bg-card: rgba(18, 22, 33, 0.75);
+            --bg-card-hover: rgba(26, 32, 48, 0.85);
+            --accent-gold: #D4AF37;
+            --accent-gold-glow: rgba(212, 175, 55, 0.25);
+            --accent-emerald: #10B981;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+            --border-glow: rgba(255, 255, 255, 0.08);
+            --gradient-gold: linear-gradient(135deg, #F3E7C4 0%, #D4AF37 50%, #AA7C11 100%);
+            --gradient-emerald: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--light-color);
-            color: var(--dark-color);
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* --- HERO / TELA INICIAL DE PREFERÊNCIAS --- */
-        .hero-screen {
+        /* Ambient Glow Background Effects */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -10%;
+            left: 20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.07) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -10%;
+            right: 10%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Top Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 13, 20, 0.8);
+            backdrop-filter: blur(15px);
+            z-index: 100;
+            border-bottom: var(--glass-border);
+        }
+
+        .brand-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Hero / Tela Inicial Premium */
+        .hero-section {
             min-height: 100vh;
-            background: var(--gradient);
-            color: var(--white);
+            padding: 140px 20px 80px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 20px;
             position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border-radius: 50px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
         }
 
         .hero-title {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            animation: fadeIn 1s ease-in-out;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 600;
+            line-height: 1.15;
+            max-width: 900px;
+            margin-bottom: 20px;
+            color: #FFFFFF;
+        }
+
+        .hero-title span {
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-style: italic;
         }
 
         .hero-subtitle {
             font-size: 1.2rem;
-            max-width: 600px;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        /* Preferências / Opções de Atendimento na Tela Inicial */
-        .preferences-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-
-        .preferences-card h3 {
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-        }
-
-        .pref-options {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-bottom: 25px;
-        }
-
-        .pref-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid transparent;
-            color: var(--white);
-            padding: 12px 20px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            flex: 1;
-        }
-
-        .pref-btn:hover, .pref-btn.active {
-            background: var(--white);
-            color: var(--primary-color);
-            border-color: var(--white);
-        }
-
-        .btn-main {
-            display: inline-block;
-            background-color: #25D366; /* WhatsApp Green */
-            color: white;
-            padding: 15px 35px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            text-decoration: none;
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .btn-main:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(37, 211, 102, 0.4);
-        }
-
-        /* --- SEÇÕES DO SITE --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            color: var(--primary-color);
+            color: var(--text-secondary);
+            max-width: 650px;
             margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* Selective Preference Control */
+        .preference-box {
+            background: var(--bg-card);
+            border: var(--glass-border);
+            backdrop-filter: blur(20px);
+            padding: 35px;
+            border-radius: 24px;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             position: relative;
         }
 
-        .section-title::after {
-            content: '';
-            width: 60px;
-            height: 4px;
-            background: var(--accent-color);
-            display: block;
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-
-        /* Cards do Consultório */
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card i {
-            font-size: 2.5rem;
-            color: var(--primary-color);
+        .preference-box h3 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--text-secondary);
             margin-bottom: 20px;
         }
 
-        .card h3 {
-            margin-bottom: 15px;
-            font-size: 1.4rem;
+        .pref-toggle-container {
+            display: flex;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 6px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 25px;
+            gap: 8px;
         }
 
-        /* Informações da Consulta */
-        .price-box {
-            background: var(--gradient);
-            color: white;
-            border-radius: 20px;
-            padding: 40px;
+        .pref-toggle-btn {
+            flex: 1;
+            padding: 12px 18px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .pref-toggle-btn.active {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--accent-gold);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 4px 20px var(--accent-gold-glow);
+        }
+
+        .btn-whatsapp-primary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 18px;
+            border-radius: 14px;
+            background: var(--gradient-emerald);
+            color: #FFFFFF;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-whatsapp-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.45);
+        }
+
+        /* Section Layouts */
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
             text-align: center;
-            margin: 40px 0;
+            margin-bottom: 60px;
         }
 
-        .price-box h2 {
-            font-size: 2.5rem;
-            margin: 15px 0;
+        .section-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 12px;
         }
 
-        /* Depoimentos */
-        .testimonials {
-            background: #fff;
-            padding: 60px 20px;
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Pillars / Cards Grid */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: var(--glass-border);
+            padding: 40px 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .testimonial-item {
-            font-style: italic;
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 20px;
+        .feature-card:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-6px);
+            border-color: rgba(212, 175, 55, 0.3);
         }
 
-        /* Assistente Virtual AI (Widget) */
-        .ai-assistant {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--primary-color);
-            color: white;
+        .icon-box {
             width: 60px;
             height: 60px;
-            border-radius: 50%;
+            border-radius: 16px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            z-index: 1000;
+            color: var(--accent-gold);
+            margin-bottom: 25px;
         }
 
-        .ai-assistant:hover {
-            transform: scale(1.1);
+        .feature-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #FFFFFF;
         }
 
-        /* Rodapé */
-        footer {
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Premium Investment / Fee Box */
+        .price-card {
+            background: linear-gradient(135deg, rgba(18, 22, 33, 0.95) 0%, rgba(26, 32, 48, 0.95) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 28px;
+            padding: 60px 40px;
             text-align: center;
-            padding: 30px;
-            background: var(--dark-color);
-            color: white;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 2px;
+            background: var(--gradient-gold);
+        }
+
+        .price-val {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin: 15px 0 5px;
+            letter-spacing: -1px;
+        }
+
+        .price-val sub {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 400;
+        }
+
+        .price-details {
+            color: var(--accent-gold);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 35px;
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: var(--bg-card);
+            border: var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .quote-mark {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            color: rgba(212, 175, 55, 0.2);
+            position: absolute;
+            top: 10px;
+            left: 30px;
+        }
+
+        .testimonial-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #E2E8F0;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .client-name {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- INTERACTIVE AI CHATBOT (Sleek Drawer) --- */
+        .ai-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gradient-gold);
+            color: #0A0D14;
+            padding: 14px 24px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+            cursor: pointer;
+            z-index: 99;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .ai-fab:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6);
+        }
+
+        .chat-modal {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 380px;
+            height: 520px;
+            background: #0E121B;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 24px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 100;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .chat-modal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+
+        .chat-header {
+            background: rgba(18, 22, 33, 0.95);
+            padding: 18px 20px;
+            border-bottom: var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-bot-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--gradient-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 1.1rem;
+        }
+
+        .chat-title h4 {
+            font-size: 0.95rem;
+            color: #FFF;
+        }
+
+        .status {
+            font-size: 0.75rem;
+            color: var(--accent-emerald);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-emerald);
+            border-radius: 50%;
+        }
+
+        .close-chat {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-chat:hover {
+            color: #FFF;
+        }
+
+        .chat-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            background: rgba(10, 13, 20, 0.6);
+        }
+
+        .msg {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .msg.bot {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-primary);
+            border-bottom-left-radius: 4px;
+            align-self: flex-start;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .msg.user {
+            background: var(--gradient-gold);
+            color: #0A0D14;
+            font-weight: 500;
+            border-bottom-right-radius: 4px;
+            align-self: flex-end;
+        }
+
+        /* Suggested Prompts Pills */
+        .quick-prompts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 5px;
+        }
+
+        .prompt-pill {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            color: var(--accent-gold);
+            font-size: 0.75rem;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .prompt-pill:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: var(--accent-gold);
+        }
+
+        .chat-footer {
+            padding: 14px;
+            background: rgba(18, 22, 33, 0.95);
+            border-top: var(--glass-border);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 10px 14px;
+            color: #FFF;
+            font-size: 0.88rem;
+            outline: none;
+        }
+
+        .chat-input:focus {
+            border-color: var(--accent-gold);
+        }
+
+        .send-btn {
+            background: var(--gradient-gold);
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            color: #000;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            border-top: var(--glass-border);
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            background: rgba(10, 13, 20, 0.9);
+            position: relative;
+            z-index: 1;
         }
 
         footer a {
-            color: var(--accent-color);
+            color: var(--accent-gold);
             text-decoration: none;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Responsive Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            nav {
+                padding: 15px 20px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .chat-modal {
+                width: calc(100vw - 40px);
+                right: 20px;
+                bottom: 90px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- TELA INICIAL (HERO & PREFERÊNCIAS) -->
-    <header class="hero-screen">
-        <h1 class="hero-title">Atendimento Psicanalítico</h1>
-        <p class="hero-subtitle">Um espaço seguro e acolhedor para a sua jornada de autoconhecimento e escuta analítica.</p>
+    <!-- TOP NAVIGATION -->
+    <nav>
+        <a href="#" class="brand-logo">Psicanálise</a>
+        <ul class="nav-links">
+            <li><a href="#abordagem">Abordagem</a></li>
+            <li><a href="#investimento">Investimento</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+            <li><a href="https://wa.me/5524981483331" target="_blank">Contato</a></li>
+        </ul>
+    </nav>
 
-        <div class="preferences-card">
-            <h3>Selecione sua preferência de atendimento:</h3>
-            <div class="pref-options">
-                <button class="pref-btn active" onclick="selectPref(this, 'Online')"><i class="fas fa-video"></i> Online</button>
-                <button class="pref-btn" onclick="selectPref(this, 'Presencial')"><i class="fas fa-user"></i> Presencial</button>
+    <!-- HERO SECTION (TELA INICIAL DE PREFERÊNCIAS) -->
+    <section class="hero-section">
+        <div class="badge">
+            <i class="fas fa-sparkles"></i> Atendimento Psicanalítico Especializado
+        </div>
+        
+        <h1 class="hero-title">
+            O Inconsciente em Escuta.<br>
+            A Transformação em <span>Palavras.</span>
+        </h1>
+        
+        <p class="hero-subtitle">
+            Um ambiente singular de acolhimento e profunda análise subjetiva para ressignificar angústias, padrões e desejos.
+        </p>
+
+        <!-- PREFERENCE BOX -->
+        <div class="preference-box">
+            <h3>Selecione a modalidade de sua preferência:</h3>
+            
+            <div class="pref-toggle-container">
+                <button class="pref-toggle-btn active" id="btn-online" onclick="setPreference('Online')">
+                    <i class="fas fa-laptop-house"></i> Online
+                </button>
+                <button class="pref-toggle-btn" id="btn-presencial" onclick="setPreference('Presencial')">
+                    <i class="fas fa-couch"></i> Presencial
+                </button>
             </div>
-            <a id="whatsapp-link" href="https://wa.me/5524981483331?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20de%20Psicanálise%20(Atendimento%20Online)." target="_blank" class="btn-main">
-                <i class="fab fa-whatsapp"></i> Agendar pelo WhatsApp
+
+            <a id="btn-wa-dynamic" href="https://wa.me/5524981483331?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20de%20Psican%C3%A1lise%20(Atendimento%20Online)." target="_blank" class="btn-whatsapp-primary">
+                <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i> Agendar via WhatsApp
             </a>
         </div>
-    </header>
+    </section>
 
-    <!-- SEÇÃO DA ABORDAGEM CLÍNICA -->
-    <section class="container">
-        <h2 class="section-title">Abordagem Clínica</h2>
-        <div class="grid-cards">
-            <div class="card">
-                <i class="fas fa-brain"></i>
-                <h3>Escuta Psicanalítica</h3>
-                <p>Processo focado na investigação do inconsciente, auxiliando na elaboração de conflitos internos, ansiedades e padrões repetitivos.</p>
+    <!-- ABORDAGEM CLÍNICA -->
+    <section class="section-container" id="abordagem">
+        <div class="section-header">
+            <h2>Abordagem Clínica</h2>
+            <p>Pilares fundamentais do processo psicanalítico de alta precisão</p>
+        </div>
+
+        <div class="grid-3">
+            <div class="feature-card">
+                <div class="icon-box">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>Associação Livre</h3>
+                <p>Investigação continuada dos conteúdos do inconsciente por meio da fala espontânea, permitindo elaborar nós sintomáticos e repetições.</p>
             </div>
-            <div class="card">
-                <i class="fas fa-heart"></i>
-                <h3>Acolhimento Sem Julgamentos</h3>
-                <p>Um ambiente seguro para expressar seus pensamentos mais profundos com total sigilo profissional e empatia.</p>
+
+            <div class="feature-card">
+                <div class="icon-box">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+                <h3>Espaço de Sigilo Absorvente</h3>
+                <p>Acolhimento rigorosamente ético, livre de julgamentos morais, focado na singularidade da sua história de vida e subjetividade.</p>
             </div>
-            <div class="card">
-                <i class="fas fa-comments"></i>
-                <h3>Sessões Individuais</h3>
-                <p>Atendimentos voltados para adultos e jovens que buscam autoconhecimento, inteligência emocional e bem-estar psíquico.</p>
+
+            <div class="feature-card">
+                <div class="icon-box">
+                    <i class="fas fa-compass"></i>
+                </div>
+                <h3>Ressignificação Emocional</h3>
+                <p>Trabalho profundo sobre fobia, angústia, ansiedade e travamentos existenciais para que o sujeito assuma a própria sustentação do desejo.</p>
             </div>
         </div>
     </section>
 
-    <!-- VALOR E AGENDAMENTO -->
-    <section class="container">
-        <div class="price-box">
-            <h2>Investimento por Sessão</h2>
-            <p style="font-size: 2rem; font-weight: bold;">R$ 200,00</p>
-            <p>Duração: 50 minutos</p>
-            <br>
-            <a href="https://wa.me/5524981483331?text=Olá!%20Gostaria%20de%20consultar%20horários%20disponíveis." target="_blank" class="btn-main" style="background: white; color: var(--primary-color);">
-                Consultar Horários Disponíveis
+    <!-- INVESTIMENTO E SESSÃO -->
+    <section class="section-container" id="investimento">
+        <div class="price-card">
+            <div class="badge" style="margin-bottom: 10px;">Transparência e Ética</div>
+            <div class="price-val">R$ 200<sub> / sessão</sub></div>
+            <div class="price-details">Sessões Individuais de 50 minutos</div>
+            <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 30px; font-size: 0.95rem;">
+                Disponibilidade de horários flexíveis para atendimento individualizado com acompanhamento contínuo.
+            </p>
+            <a href="https://wa.me/5524981483331?text=Ol%C3%A1!%20Gostaria%20de%20verificar%20hor%C3%A1rios%20dispon%C3%ADveis%20para%20psican%C3%A1lise." target="_blank" class="btn-whatsapp-primary" style="max-width: 320px; margin: 0 auto;">
+                Consultar Agenda
             </a>
         </div>
     </section>
 
     <!-- DEPOIMENTOS -->
-    <section class="container">
-        <h2 class="section-title">Depoimentos</h2>
-        <div class="testimonials">
-            <div class="testimonial-item">
-                <p>"O processo psicanalítico mudou completamente a forma como me relaciono com minhas emoções e escolhas. A escuta é atenta e muito acolhedora."</p>
-                <br>
-                <strong>— M. R.</strong>
-            </div>
+    <section class="section-container" id="depoimentos">
+        <div class="section-header">
+            <h2>Experiências na Análise</h2>
+            <p>Relatos sigilosos de quem vivencia o processo analítico</p>
+        </div>
+
+        <div class="testimonial-card">
+            <div class="quote-mark">“</div>
+            <p class="testimonial-text">
+                A psicanálise me permitiu enxergar padrões que eu repetia há anos sem perceber. Encontrei um espaço seguro de escuta acolhedora onde finalmente pude dar nome às minhas questões.
+            </p>
+            <div class="client-name">— PACIENTE EM ACOMPANHAMENTO</div>
         </div>
     </section>
 
-    <!-- ASSISTENTE VIRTUAL AI (BOTÃO FLUTUANTE) -->
-    <div class="ai-assistant" title="Assistente Virtual" onclick="alert('Assistente Virtual: Olá! Se tiver dúvidas sobre a análise ou horários, entre em contato direto pelo WhatsApp: +55 24 98148-3331')">
-        <i class="fas fa-robot"></i>
+    <!-- ASSISTENTE IA FLUTUANTE (BOTÃO E MODAL INTEGRADO) -->
+    <button class="ai-fab" onclick="toggleChat()">
+        <i class="fas fa-sparkles"></i> Dúvidas? Fale com a IA
+    </button>
+
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-header">
+            <div class="chat-bot-info">
+                <div class="avatar"><i class="fas fa-robot"></i></div>
+                <div class="chat-title">
+                    <h4>Assistente Psicanalítico</h4>
+                    <div class="status"><span class="status-dot"></span> Online</div>
+                </div>
+            </div>
+            <button class="close-chat" onclick="toggleChat()"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="chat-body" id="chatBody">
+            <div class="msg bot">
+                Olá! Sou o assistente virtual do consultório. Como posso te ajudar hoje?
+                <div class="quick-prompts">
+                    <span class="prompt-pill" onclick="sendQuickPrompt('Como funciona a primeira sessão?')">Primeira sessão?</span>
+                    <span class="prompt-pill" onclick="sendQuickPrompt('Qual o valor e duração?')">Valor e Duração?</span>
+                    <span class="prompt-pill" onclick="sendQuickPrompt('Atende online ou presencial?')">Modalidades?</span>
+                    <span class="prompt-pill" onclick="sendQuickPrompt('Como agendar pelo WhatsApp?')">Como agendar?</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-footer">
+            <input type="text" id="userInput" class="chat-input" placeholder="Digite sua pergunta aqui..." onkeypress="handleKeyPress(event)">
+            <button class="send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
     </div>
 
-    <!-- RODAPÉ -->
+    <!-- FOOTER -->
     <footer>
         <p>&copy; Consultório de Psicanálise. Todos os direitos reservados.</p>
-        <p>Contato: <a href="https://wa.me/5524981483331">+55 24 98148-3331</a></p>
+        <p style="margin-top: 8px;">Contato Direto / WhatsApp: <a href="https://wa.me/5524981483331" target="_blank">+55 24 98148-3331</a></p>
     </footer>
 
-    <!-- JS PARA ALTERAR AS PREFERÊNCIAS NA TELA INICIAL -->
+    <!-- INTERACTION LOGIC & AI ASSISTANT SCRIPT -->
     <script>
-        function selectPref(element, type) {
-            document.querySelectorAll('.pref-btn').forEach(btn => btn.classList.remove('active'));
-            element.classList.add('active');
-            
-            const waLink = document.getElementById('whatsapp-link');
+        let currentPreference = 'Online';
+
+        function setPreference(type) {
+            currentPreference = type;
+            document.getElementById('btn-online').classList.remove('active');
+            document.getElementById('btn-presencial').classList.remove('active');
+
+            if (type === 'Online') {
+                document.getElementById('btn-online').classList.add('active');
+            } else {
+                document.getElementById('btn-presencial').classList.add('active');
+            }
+
             const phone = "5524981483331";
-            const message = encodeURIComponent(`Olá! Gostaria de agendar uma consulta de Psicanálise (Atendimento ${type}).`);
-            
-            waLink.href = `https://wa.me/${phone}?text=${message}`;
+            const text = encodeURIComponent(`Olá! Gostaria de agendar uma consulta de Psicanálise (Atendimento ${type}).`);
+            document.getElementById('btn-wa-dynamic').href = `https://wa.me/${phone}?text=${text}`;
+        }
+
+        // Chatbot Drawer Controls
+        function toggleChat() {
+            const modal = document.getElementById('chatModal');
+            modal.classList.toggle('active');
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendQuickPrompt(promptText) {
+            document.getElementById('userInput').value = promptText;
+            sendMessage();
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const messageText = input.value.trim();
+            if (!messageText) return;
+
+            // Render User Message
+            appendMessage(messageText, 'user');
+            input.value = '';
+
+            // Simulate AI Typing response
+            setTimeout(() => {
+                const botReply = generateAIReply(messageText);
+                appendMessage(botReply, 'bot');
+            }, 600);
+        }
+
+        function appendMessage(text, sender) {
+            const chatBody = document.getElementById('chatBody');
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('msg', sender);
+            msgDiv.innerHTML = text;
+            chatBody.appendChild(msgDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        // Knowledge Base Response Engine for Psychoanalysis Clinic
+        function generateAIReply(userMsg) {
+            const msg = userMsg.toLowerCase();
+
+            if (msg.includes('valor') || msg.includes('preço') || msg.includes('custo') || msg.includes('quanto')) {
+                return `O investimento por sessão individual é de <strong>R$ 200,00</strong> com duração de 50 minutos.<br><br><a href="https://wa.me/5524981483331?text=Gostaria%20de%20agendar%20pelo%20valor%20de%20R$%20200" target="_blank" style="color: var(--accent-gold); font-weight: 600;">Clique aqui para agendar seu horário.</a>`;
+            }
+
+            if (msg.includes('primeira') || msg.includes('funciona') || msg.includes('sessão') || msg.includes('sessao')) {
+                return `A primeira sessão serve como entrevista preliminar, onde você compartilha o que traz como angústia ou busca de autoconhecimento, e alinhamos o formato do acompanhamento.`;
+            }
+
+            if (msg.includes('online') || msg.includes('presencial') || msg.includes('modalidade') || msg.includes('onde')) {
+                return `Oferecemos atendimento em duas modalidades:<br>• <strong>Online:</strong> Via videochamada individual segura.<br>• <strong>Presencial:</strong> Em consultório estruturado para acolhimento analítico.`;
+            }
+
+            if (msg.includes('agendar') || msg.includes('horário') || msg.includes('horario') || msg.includes('whatsapp') || msg.includes('contato')) {
+                return `Você pode agendar diretamente pelo WhatsApp <strong>+55 24 98148-3331</strong>.<br><br><a href="https://wa.me/5524981483331?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" style="color: var(--accent-emerald); font-weight: bold;">[ Abrir conversa no WhatsApp ]</a>`;
+            }
+
+            if (msg.includes('diferença') || msg.includes('psicologia') || msg.includes('psicanalise')) {
+                return `A psicanálise se diferencia por investigar o <strong>inconsciente</strong> e a fala do sujeito, permitindo tratar conflitos subjetivos em vez de focar apenas em adequação comportamental.`;
+            }
+
+            return `Compreendo sua dúvida. Para tratarmos especificamente das suas necessidades de horário ou dúvidas mais detalhadas, entre em contato direto pelo WhatsApp:<br><br><a href="https://wa.me/5524981483331" target="_blank" style="color: var(--accent-gold); font-weight: bold;">+55 24 98148-3331</a>`;
         }
     </script>
 </body>
 </html>
+```eof
+
+### Destaques das Atualizações Realizadas:
+1. **Design Ultra Premium & Moderno:**
+   - Paleta em tom escuro executivo (`#0A0D14`) com detalhes elegantes em **Dourado/Champagne** e **Verde Esmeralda**.
+   - Efeitos de luz ambiente suave (`radial-gradient`), cartões transparentes com *Glassmorphism* e tipografia refinada com *Cormorant Garamond* e *Plus Jakarta Sans*.
+
+2. **Assistente de IA Interativo ("Dúvidas? Fale com a IA"):**
+   - Botão flutuante no canto inferior direito que abre uma gaveta de chat moderna.
+   - Respostas instantâneas a perguntas frequentes (valor de R$ 200,00, duração de 50 min, diferença de modalidades, agendamentos).
+   - Caixa de texto onde o paciente pode digitar perguntas e receber direcionamento automático para o WhatsApp.
+
+3. **Inclusão do Número Correto (+55 24 98148-3331):**
+   - Todos os botões, footer, chat da IA e seções de agendamento estão com o link de direcionamento para o seu número **+55 24 98148-3331**.
