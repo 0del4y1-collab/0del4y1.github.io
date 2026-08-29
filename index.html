@@ -648,7 +648,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
-            margin-top: 8px;
+            margin-top: 10px;
         }
 
         .prompt-pill {
@@ -747,6 +747,10 @@
             color: #FFFFFF;
             background: var(--gradient-instagram);
             transform: translateY(-3px);
+        }
+
+        .footer-socials a.wa-hover:hover {
+            background: var(--gradient-emerald);
         }
 
         /* Responsive Mobile Adjustments */
@@ -952,12 +956,12 @@
             <a href="https://www.instagram.com/antoniojunior.psicanalista" target="_blank" title="Instagram">
                 <i class="fab fa-instagram"></i>
             </a>
-            <a href="https://wa.me/5524981483331" target="_blank" title="WhatsApp">
+            <a href="https://wa.me/5524981483331" target="_blank" title="WhatsApp" class="wa-hover">
                 <i class="fab fa-whatsapp"></i>
             </a>
         </div>
 
-        <p style="margin-top: 8px;">Contato: <a href="https://wa.me/5524981483331" target="_blank">+55 24 98148-3331</a> | Instagram: <a href="https://www.instagram.com/antoniojunior.psicanalista" target="_blank">@antoniojunior.psicanalista</a></p>
+        <p style="margin-top: 8px;">Contato: <a href="https://wa.me/5524981483331" target="_blank" style="color: var(--accent-gold); text-decoration: none;">+55 24 98148-3331</a> | Instagram: <a href="https://www.instagram.com/antoniojunior.psicanalista" target="_blank" style="color: var(--accent-gold); text-decoration: none;">@antoniojunior.psicanalista</a></p>
     </footer>
 
     <!-- INTERACTION LOGIC & AI ASSISTANT SCRIPT -->
@@ -1001,39 +1005,39 @@
             const message = input.value.trim();
             if (!message) return;
 
-            const chatBody = document.getElementById('chatBody');
-
-            // Mensagem do usuário
-            const userDiv = document.createElement('div');
-            userDiv.className = 'msg user';
-            userDiv.innerText = message;
-            chatBody.appendChild(userDiv);
-
+            // Adiciona mensagem do usuário
+            appendMessage(message, 'user');
             input.value = '';
-            chatBody.scrollTop = chatBody.scrollHeight;
 
-            // Resposta simulada do bot
+            // Resposta simulada inteligente
             setTimeout(() => {
-                const botDiv = document.createElement('div');
-                botDiv.className = 'msg bot';
-                botDiv.innerText = getBotResponse(message);
-                chatBody.appendChild(botDiv);
-                chatBody.scrollTop = chatBody.scrollHeight;
+                const response = getBotResponse(message);
+                appendMessage(response, 'bot');
             }, 600);
         }
 
+        function appendMessage(text, side) {
+            const chatBody = document.getElementById('chatBody');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `msg ${side}`;
+            msgDiv.innerHTML = text;
+            chatBody.appendChild(msgDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
         function getBotResponse(input) {
-            const text = input.toLowerCase();
-            if (text.includes('primeira') || text.includes('funciona')) {
-                return 'A primeira sessão serve para nos conhecermos, entender suas demandas principais e estabelecer a dinâmica de trabalho psicanalítico.';
-            } else if (text.includes('valor') || text.includes('preço') || text.includes('duração')) {
-                return 'A sessão individual possui valor de R$ 200 com duração de 50 minutos.';
-            } else if (text.includes('online') || text.includes('presencial') || text.includes('modalidade')) {
-                return 'Os atendimentos são realizados tanto de forma Online quanto Presencial com horários agendados previamente.';
-            } else if (text.includes('instagram')) {
-                return 'Você pode acompanhar mais conteúdos no Instagram: @antoniojunior.psicanalista.';
+            const lower = input.toLowerCase();
+            
+            if (lower.includes('primeira sessão') || lower.includes('funciona') || lower.includes('primeira')) {
+                return 'A primeira sessão é um momento para nos conhecermos. Você terá espaço para relatar suas queixas e alinhar suas expectativas com o processo analítico.';
+            } else if (lower.includes('valor') || lower.includes('duracao') || lower.includes('duração') || lower.includes('quanto') || lower.includes('preço')) {
+                return 'O investimento por sessão é de <strong>R$ 200,00</strong>, com duração média de <strong>50 minutos</strong> cada atendimento.';
+            } else if (lower.includes('online') || lower.includes('presencial') || lower.includes('modalidade')) {
+                return 'Oferecemos atendimentos tanto na modalidade <strong>Online</strong> (via videochamada segura) quanto <strong>Presencial</strong> no consultório.';
+            } else if (lower.includes('instagram') || lower.includes('rede')) {
+                return 'Você pode acompanhar mais reflexões no Instagram oficial: <a href="https://www.instagram.com/antoniojunior.psicanalista" target="_blank" style="color: #D4AF37;">@antoniojunior.psicanalista</a>';
             } else {
-                return 'Para informações mais detalhadas ou agendamentos específicos, fique à vontade para chamar diretamente no WhatsApp pelo botão da tela!';
+                return 'Obrigado pelo contato! Para agendar uma consulta ou tirar dúvidas específicas diretamente com o psicanalista Antônio Júnior, <a href="https://wa.me/5524981483331" target="_blank" style="color: #10B981; font-weight: bold;">clique aqui para abrir o WhatsApp</a>.';
             }
         }
     </script>
