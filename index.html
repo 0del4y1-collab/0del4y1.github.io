@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultório de Psicanálise | Escuta & Autoconhecimento</title>
+    <title>Consultório de Psicanálise | Antônio Júnior</title>
     
     <!-- Google Fonts & Font Awesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,6 +25,7 @@
             --border-glow: rgba(255, 255, 255, 0.08);
             --gradient-gold: linear-gradient(135deg, #F3E7C4 0%, #D4AF37 50%, #AA7C11 100%);
             --gradient-emerald: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            --gradient-instagram: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             --glass-border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -74,30 +75,44 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 20px 40px;
+            padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 13, 20, 0.8);
+            background: rgba(10, 13, 20, 0.85);
             backdrop-filter: blur(15px);
             z-index: 100;
             border-bottom: var(--glass-border);
         }
 
-        .brand-logo {
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        /* Logo Estilizada */
+        .brand-logo-img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .brand-logo-text {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
             letter-spacing: 1px;
             background: var(--gradient-gold);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-decoration: none;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            align-items: center;
+            gap: 25px;
             list-style: none;
         }
 
@@ -110,6 +125,37 @@
 
         .nav-links a:hover {
             color: var(--accent-gold);
+        }
+
+        /* Botão Guia Instagram Nav */
+        .nav-instagram-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(220, 39, 67, 0.4);
+            color: #FFFFFF !important;
+            font-weight: 600;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-instagram-btn i {
+            background: var(--gradient-instagram);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.1rem;
+        }
+
+        .nav-instagram-btn:hover {
+            background: var(--gradient-instagram);
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4);
+        }
+
+        .nav-instagram-btn:hover i {
+            -webkit-text-fill-color: #FFFFFF;
         }
 
         /* Hero / Tela Inicial Premium */
@@ -408,7 +454,7 @@
             letter-spacing: 1px;
         }
 
-        /* --- INTERACTIVE AI CHATBOT (Sleek Drawer) --- */
+        /* --- INTERACTIVE AI CHATBOT --- */
         .ai-fab {
             position: fixed;
             bottom: 30px;
@@ -554,12 +600,11 @@
             align-self: flex-end;
         }
 
-        /* Suggested Prompts Pills */
         .quick-prompts {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
-            margin-top: 5px;
+            margin-top: 8px;
         }
 
         .prompt-pill {
@@ -620,7 +665,7 @@
             transform: scale(1.05);
         }
 
-        /* Footer */
+        /* Footer Social Links */
         footer {
             border-top: var(--glass-border);
             padding: 40px 20px;
@@ -632,9 +677,32 @@
             z-index: 1;
         }
 
-        footer a {
-            color: var(--accent-gold);
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .footer-socials a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
             text-decoration: none;
+        }
+
+        .footer-socials a:hover {
+            color: #FFFFFF;
+            background: var(--gradient-instagram);
+            transform: translateY(-3px);
         }
 
         /* Responsive Mobile Adjustments */
@@ -658,14 +726,22 @@
 </head>
 <body>
 
-    <!-- TOP NAVIGATION -->
+    <!-- TOP NAVIGATION COM LOGO E LINK INSTAGRAM -->
     <nav>
-        <a href="#" class="brand-logo">Psicanálise</a>
+        <a href="#" class="brand-container">
+            <!-- Caso tenha a imagem da logo, insira a URL/caminho no src abaixo -->
+            <!-- <img src="logo.png" alt="Antônio Júnior Psicanálise" class="brand-logo-img"> -->
+            <span class="brand-logo-text">Antônio Júnior | Psicanálise</span>
+        </a>
         <ul class="nav-links">
             <li><a href="#abordagem">Abordagem</a></li>
             <li><a href="#investimento">Investimento</a></li>
             <li><a href="#depoimentos">Depoimentos</a></li>
-            <li><a href="https://wa.me/5524981483331" target="_blank">Contato</a></li>
+            <li>
+                <a href="https://www.instagram.com/antoniojunior.psicanalista" target="_blank" class="nav-instagram-btn">
+                    <i class="fab fa-instagram"></i> @antoniojunior.psicanalista
+                </a>
+            </li>
         </ul>
     </nav>
 
@@ -768,7 +844,7 @@
         </div>
     </section>
 
-    <!-- ASSISTENTE IA FLUTUANTE (BOTÃO E MODAL INTEGRADO) -->
+    <!-- ASSISTENTE IA FLUTUANTE -->
     <button class="ai-fab" onclick="toggleChat()">
         <i class="fas fa-sparkles"></i> Dúvidas? Fale com a IA
     </button>
@@ -787,12 +863,12 @@
 
         <div class="chat-body" id="chatBody">
             <div class="msg bot">
-                Olá! Sou o assistente virtual do consultório. Como posso te ajudar hoje?
+                Olá! Sou o assistente virtual do psicanalista Antônio Júnior. Como posso te ajudar hoje?
                 <div class="quick-prompts">
                     <span class="prompt-pill" onclick="sendQuickPrompt('Como funciona a primeira sessão?')">Primeira sessão?</span>
                     <span class="prompt-pill" onclick="sendQuickPrompt('Qual o valor e duração?')">Valor e Duração?</span>
                     <span class="prompt-pill" onclick="sendQuickPrompt('Atende online ou presencial?')">Modalidades?</span>
-                    <span class="prompt-pill" onclick="sendQuickPrompt('Como agendar pelo WhatsApp?')">Como agendar?</span>
+                    <span class="prompt-pill" onclick="sendQuickPrompt('Qual o seu Instagram?')">Instagram?</span>
                 </div>
             </div>
         </div>
@@ -805,8 +881,18 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>&copy; Consultório de Psicanálise. Todos os direitos reservados.</p>
-        <p style="margin-top: 8px;">Contato Direto / WhatsApp: <a href="https://wa.me/5524981483331" target="_blank">+55 24 98148-3331</a></p>
+        <p>&copy; Antônio Júnior | Consultório de Psicanálise. Todos os direitos reservados.</p>
+        
+        <div class="footer-socials">
+            <a href="https://www.instagram.com/antoniojunior.psicanalista" target="_blank" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/5524981483331" target="_blank" title="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+
+        <p style="margin-top: 8px;">Contato: <a href="https://wa.me/5524981483331" target="_blank">+55 24 98148-3331</a> | Instagram: <a href="https://www.instagram.com/antoniojunior.psicanalista" target="_blank">@antoniojunior.psicanalista</a></p>
     </footer>
 
     <!-- INTERACTION LOGIC & AI ASSISTANT SCRIPT -->
@@ -829,7 +915,6 @@
             document.getElementById('btn-wa-dynamic').href = `https://wa.me/${phone}?text=${text}`;
         }
 
-        // Chatbot Drawer Controls
         function toggleChat() {
             const modal = document.getElementById('chatModal');
             modal.classList.toggle('active');
@@ -851,11 +936,9 @@
             const messageText = input.value.trim();
             if (!messageText) return;
 
-            // Render User Message
             appendMessage(messageText, 'user');
             input.value = '';
 
-            // Simulate AI Typing response
             setTimeout(() => {
                 const botReply = generateAIReply(messageText);
                 appendMessage(botReply, 'bot');
@@ -871,9 +954,12 @@
             chatBody.scrollTop = chatBody.scrollHeight;
         }
 
-        // Knowledge Base Response Engine for Psychoanalysis Clinic
         function generateAIReply(userMsg) {
             const msg = userMsg.toLowerCase();
+
+            if (msg.includes('instagram') || msg.includes('rede') || msg.includes('social')) {
+                return `Você pode acompanhar publicações e reflexões do psicanalista Antônio Júnior diretamente no Instagram:<br><br><a href="https://www.instagram.com/antoniojunior.psicanalista" target="_blank" style="color: var(--accent-gold); font-weight: bold;">@antoniojunior.psicanalista</a>`;
+            }
 
             if (msg.includes('valor') || msg.includes('preço') || msg.includes('custo') || msg.includes('quanto')) {
                 return `O investimento por sessão individual é de <strong>R$ 200,00</strong> com duração de 50 minutos.<br><br><a href="https://wa.me/5524981483331?text=Gostaria%20de%20agendar%20pelo%20valor%20de%20R$%20200" target="_blank" style="color: var(--accent-gold); font-weight: 600;">Clique aqui para agendar seu horário.</a>`;
@@ -891,26 +977,8 @@
                 return `Você pode agendar diretamente pelo WhatsApp <strong>+55 24 98148-3331</strong>.<br><br><a href="https://wa.me/5524981483331?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" style="color: var(--accent-emerald); font-weight: bold;">[ Abrir conversa no WhatsApp ]</a>`;
             }
 
-            if (msg.includes('diferença') || msg.includes('psicologia') || msg.includes('psicanalise')) {
-                return `A psicanálise se diferencia por investigar o <strong>inconsciente</strong> e a fala do sujeito, permitindo tratar conflitos subjetivos em vez de focar apenas em adequação comportamental.`;
-            }
-
-            return `Compreendo sua dúvida. Para tratarmos especificamente das suas necessidades de horário ou dúvidas mais detalhadas, entre em contato direto pelo WhatsApp:<br><br><a href="https://wa.me/5524981483331" target="_blank" style="color: var(--accent-gold); font-weight: bold;">+55 24 98148-3331</a>`;
+            return `Compreendo sua dúvida. Para agendamentos ou informações adicionais, entre em contato no WhatsApp <a href="https://wa.me/5524981483331" target="_blank" style="color: var(--accent-gold); font-weight: bold;">+55 24 98148-3331</a> ou visite nosso Instagram <a href="https://www.instagram.com/antoniojunior.psicanalista" target="_blank" style="color: var(--accent-gold); font-weight: bold;">@antoniojunior.psicanalista</a>.`;
         }
     </script>
 </body>
 </html>
-```eof
-
-### Destaques das Atualizações Realizadas:
-1. **Design Ultra Premium & Moderno:**
-   - Paleta em tom escuro executivo (`#0A0D14`) com detalhes elegantes em **Dourado/Champagne** e **Verde Esmeralda**.
-   - Efeitos de luz ambiente suave (`radial-gradient`), cartões transparentes com *Glassmorphism* e tipografia refinada com *Cormorant Garamond* e *Plus Jakarta Sans*.
-
-2. **Assistente de IA Interativo ("Dúvidas? Fale com a IA"):**
-   - Botão flutuante no canto inferior direito que abre uma gaveta de chat moderna.
-   - Respostas instantâneas a perguntas frequentes (valor de R$ 200,00, duração de 50 min, diferença de modalidades, agendamentos).
-   - Caixa de texto onde o paciente pode digitar perguntas e receber direcionamento automático para o WhatsApp.
-
-3. **Inclusão do Número Correto (+55 24 98148-3331):**
-   - Todos os botões, footer, chat da IA e seções de agendamento estão com o link de direcionamento para o seu número **+55 24 98148-3331**.
